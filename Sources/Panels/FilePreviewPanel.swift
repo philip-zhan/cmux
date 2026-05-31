@@ -964,6 +964,15 @@ final class FilePreviewPanel: Panel, ObservableObject, FilePreviewTextEditingPan
     /// the engine preference applies on the next file open.
     @Published private(set) var usesCodeMirrorEngine = false
 
+    // MARK: - Inline blame
+    //
+    // Per-line git blame for the single-file (non-diff) text view, driving the
+    // current-line inline annotation in the CodeMirror engine. `nil` until the
+    // first blame load resolves, or when blame is unavailable (untracked file,
+    // not in a repo). Never populated in diff mode.
+    @Published private(set) var blameLines: [GitBlameLine]?
+    private var blameLoadGeneration = 0
+
     // MARK: - Diff mode
     //
     // Populated only when `diffAgainstHead` is true. `diffOriginal` is the
@@ -1018,6 +1027,23 @@ final class FilePreviewPanel: Panel, ObservableObject, FilePreviewTextEditingPan
         resolvePreviewModeIfNeeded(for: fileURL)
         if diffAgainstHead {
             loadDiffContent()
+        } else {
+            loadBlame()
+        }
+    }
+
+    /// Loads per-line git blame for the current file. No-op in diff mode. A
+    /// generation guard drops the result if a newer load (reload/save) started
+    /// while this one was in flight.
+    func loadBlame() {
+        guard !diffAgainstHead else { return }
+        blameLoadGeneration += 1
+        let generation = blameLoadGeneration
+        let path = filePath
+        Task { [weak self] in
+            let lines = await CodeViewerGitBlameSource.load(filePath: path)
+            guard let self, self.blameLoadGeneration == generation else { return }
+            self.blameLines = lines
         }
     }
 
@@ -1251,6 +1277,9 @@ final class FilePreviewPanel: Panel, ObservableObject, FilePreviewTextEditingPan
             textEncoding = encoding
             isDirty = false
             isFileUnavailable = false
+            // The on-disk content changed (external edit / reload); line→commit
+            // mapping may have shifted, so re-blame.
+            loadBlame()
         }
     }
 
@@ -1287,6 +1316,9 @@ final class FilePreviewPanel: Panel, ObservableObject, FilePreviewTextEditingPan
                 // follows our own write is a no-op (equal payload, no remount).
                 if self.diffAgainstHead {
                     self.diffModified = currentContent
+                } else {
+                    // Saved lines are now "uncommitted" in blame terms; refresh.
+                    self.loadBlame()
                 }
             case .failed(let fileExists):
                 self.isFileUnavailable = !fileExists

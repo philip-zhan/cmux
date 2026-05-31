@@ -30,8 +30,6 @@
 		C34670010000000000000001 /* AppDelegateRenameShortcutContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34670010000000000000002 /* AppDelegateRenameShortcutContextTests.swift */; };
 		F6000000A1B2C3D4E5F60718 /* AppDelegateShortcutRoutingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6000001A1B2C3D4E5F60718 /* AppDelegateShortcutRoutingTests.swift */; };
 		A11EAB000000000000000000 /* AppearanceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11EAB000000000000000001 /* AppearanceSettings.swift */; };
-		A11EAB100000000000000000 /* SettingsWindowContentVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11EAB100000000000000001 /* SettingsWindowContentVisibility.swift */; };
-		A11EAB200000000000000000 /* SettingsWindowContentVisibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11EAB200000000000000001 /* SettingsWindowContentVisibilityTests.swift */; };
 		A11EAA000000000000000000 /* AppearanceSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11EAA000000000000000001 /* AppearanceSettingsTests.swift */; };
 		D1320AA0D1320AA0D1320AA1 /* AppIconDockTilePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1320AA0D1320AA0D1320AA4 /* AppIconDockTilePlugin.swift */; };
 		A5001621 /* AppleScriptSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5001620 /* AppleScriptSupport.swift */; };
@@ -106,22 +104,6 @@
 		E3309A07 /* cmuxApp+EqualizeSplitsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3309A08 /* cmuxApp+EqualizeSplitsMenu.swift */; };
 		C4160A010000000000000001 /* cmuxApp+HistoryMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4160A010000000000000002 /* cmuxApp+HistoryMenu.swift */; };
 		A5001001 /* cmuxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5001011 /* cmuxApp.swift */; };
-		C0DEC0DEC0DEC0DEC0DE0001 /* CodeMirrorSpike.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE0002 /* CodeMirrorSpike.swift */; };
-		C0DEC0DEC0DEC0DEC0DE0017 /* FilePreviewCodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE0018 /* FilePreviewCodeEditor.swift */; };
-		5C0DE00100000000000A0001 /* SourceControlStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0DE00100000000000A0002 /* SourceControlStore.swift */; };
-		5C0DE00100000000000A0003 /* SourceControlPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0DE00100000000000A0004 /* SourceControlPanelView.swift */; };
-		5C0DE00100000000000A0005 /* FilePreviewDiffEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0DE00100000000000A0006 /* FilePreviewDiffEditor.swift */; };
-		5C0DE00100000000000A0007 /* SourceControlGitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0DE00100000000000A0008 /* SourceControlGitTests.swift */; };
-		C0DEC0DEC0DEC0DEC0DE0003 /* CodeViewerAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE0004 /* CodeViewerAssets.swift */; };
-		C0DEC0DEC0DEC0DEC0DE0005 /* code-viewer in Resources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE0006 /* code-viewer */; };
-		C0DEC0DEC0DEC0DEC0DE0007 /* CodeWebRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE0008 /* CodeWebRenderer.swift */; };
-		C0DEC0DEC0DEC0DEC0DE0009 /* CodeWebSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE000A /* CodeWebSupport.swift */; };
-		C0DEC0DEC0DEC0DEC0DE000B /* CodeViewerLanguageDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE000C /* CodeViewerLanguageDetector.swift */; };
-		C0DEC0DEC0DEC0DEC0DE000D /* CodeViewerGitDiffSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE000E /* CodeViewerGitDiffSource.swift */; };
-		C0DEC0DEC0DEC0DEC0DE000F /* CodePreviewEngineSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE0010 /* CodePreviewEngineSettings.swift */; };
-		C0DEC0DEC0DEC0DEC0DE0011 /* CodeViewerLanguageDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE0012 /* CodeViewerLanguageDetectorTests.swift */; };
-		C0DEC0DEC0DEC0DEC0DE0013 /* CodeViewerGitDiffSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE0014 /* CodeViewerGitDiffSourceTests.swift */; };
-		C0DEC0DEC0DEC0DEC0DE0015 /* CodePreviewEngineSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE0016 /* CodePreviewEngineSettingsTests.swift */; };
 		D35110010000000000000001 /* CmuxApplicationSupportDirectories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35110010000000000000002 /* CmuxApplicationSupportDirectories.swift */; };
 		D35110010000000000000003 /* CmuxApplicationSupportDirectories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35110010000000000000002 /* CmuxApplicationSupportDirectories.swift */; };
 		5EDB6027B346C46521A93C74 /* CMUXAuthCore in Frameworks */ = {isa = PBXBuildFile; productRef = 29813FE5A6CBC1019289A251 /* CMUXAuthCore */; };
@@ -164,11 +146,6 @@
 		C0DE31390000000000000101 /* CMUXOpenCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE31390000000000000102 /* CMUXOpenCommandTests.swift */; };
 		3069F1D10000000000000005 /* CMUXPasteboardFidelity in Frameworks */ = {isa = PBXBuildFile; productRef = 3069F1D10000000000000006 /* CMUXPasteboardFidelity */; };
 		D3610C010000000000000001 /* CmuxSettingsJSONPathSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3610C010000000000000002 /* CmuxSettingsJSONPathSupport.swift */; };
-		C0DEF4130000000000000001 /* CommandPaletteFileSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF4130000000000000002 /* CommandPaletteFileSearchTests.swift */; };
-		C0DEF4140000000000000001 /* CommandPaletteFilePathRankerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF4140000000000000002 /* CommandPaletteFilePathRankerTests.swift */; };
-		C0DEFF400000000000000001 /* CommandPaletteFileIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEFF400000000000000002 /* CommandPaletteFileIndexer.swift */; };
-		C0DEFF600000000000000001 /* CommandPaletteFileRecentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEFF600000000000000002 /* CommandPaletteFileRecentsStore.swift */; };
-		C0DEFF700000000000000001 /* CommandPaletteFilePathRanker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEFF700000000000000002 /* CommandPaletteFilePathRanker.swift */; };
 		E7E000000000000000000009 /* CmuxSocketEventMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E00000000000000000000A /* CmuxSocketEventMapper.swift */; };
 		A5354303A5354303A5354303 /* CMUXSocketPathDomain in Frameworks */ = {isa = PBXBuildFile; productRef = A5354305A5354305A5354305 /* CMUXSocketPathDomain */; };
 		B900004CA1B2C3D4E5F60719 /* CMUXSocketPathDomain in Frameworks */ = {isa = PBXBuildFile; productRef = A5354305A5354305A5354305 /* CMUXSocketPathDomain */; };
@@ -190,7 +167,25 @@
 		D0B1000CA1B2C3D4E5F60001 /* CmuxWebViewDragRoutingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B1000DA1B2C3D4E5F60001 /* CmuxWebViewDragRoutingTests.swift */; };
 		E30750000000000000000004 /* CmuxWorkspaceDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30750000000000000000003 /* CmuxWorkspaceDefinition.swift */; };
 		AA11BB22CC33DD44EE550001 /* CMUXWorkstream in Frameworks */ = {isa = PBXBuildFile; productRef = AA11BB22CC33DD44EE550002 /* CMUXWorkstream */; };
+		C0DEC0DEC0DEC0DEC0DE0005 /* code-viewer in Resources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE0006 /* code-viewer */; };
+		C0DEC0DEC0DEC0DEC0DE0001 /* CodeMirrorSpike.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE0002 /* CodeMirrorSpike.swift */; };
+		C0DEC0DEC0DEC0DEC0DE000F /* CodePreviewEngineSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE0010 /* CodePreviewEngineSettings.swift */; };
+		C0DEC0DEC0DEC0DEC0DE0015 /* CodePreviewEngineSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE0016 /* CodePreviewEngineSettingsTests.swift */; };
+		C0DEC0DEC0DEC0DEC0DE0003 /* CodeViewerAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE0004 /* CodeViewerAssets.swift */; };
+		C0DEC0DEC0DEC0DEC0DE001B /* CodeViewerGitBlameSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE001C /* CodeViewerGitBlameSource.swift */; };
+		C0DEC0DEC0DEC0DEC0DE0019 /* CodeViewerGitBlameSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE001A /* CodeViewerGitBlameSourceTests.swift */; };
+		C0DEC0DEC0DEC0DEC0DE000D /* CodeViewerGitDiffSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE000E /* CodeViewerGitDiffSource.swift */; };
+		C0DEC0DEC0DEC0DEC0DE0013 /* CodeViewerGitDiffSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE0014 /* CodeViewerGitDiffSourceTests.swift */; };
+		C0DEC0DEC0DEC0DEC0DE000B /* CodeViewerLanguageDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE000C /* CodeViewerLanguageDetector.swift */; };
+		C0DEC0DEC0DEC0DEC0DE0011 /* CodeViewerLanguageDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE0012 /* CodeViewerLanguageDetectorTests.swift */; };
+		C0DEC0DEC0DEC0DEC0DE0007 /* CodeWebRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE0008 /* CodeWebRenderer.swift */; };
+		C0DEC0DEC0DEC0DEC0DE0009 /* CodeWebSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE000A /* CodeWebSupport.swift */; };
 		C4041001000000000000001B /* CommandClickFileOpenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4041001000000000000001A /* CommandClickFileOpenRouter.swift */; };
+		C0DEFF400000000000000001 /* CommandPaletteFileIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEFF400000000000000002 /* CommandPaletteFileIndexer.swift */; };
+		C0DEFF700000000000000001 /* CommandPaletteFilePathRanker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEFF700000000000000002 /* CommandPaletteFilePathRanker.swift */; };
+		C0DEF4140000000000000001 /* CommandPaletteFilePathRankerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF4140000000000000002 /* CommandPaletteFilePathRankerTests.swift */; };
+		C0DEFF600000000000000001 /* CommandPaletteFileRecentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEFF600000000000000002 /* CommandPaletteFileRecentsStore.swift */; };
+		C0DEF4130000000000000001 /* CommandPaletteFileSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEF4130000000000000002 /* CommandPaletteFileSearchTests.swift */; };
 		C0DE32470000000000000005 /* CommandPaletteIdentifierClipboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE32470000000000000006 /* CommandPaletteIdentifierClipboardUITests.swift */; };
 		C0DEC0DE000000000000F202 /* CommandPaletteNucleoFFILibrarySupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DE000000000000F201 /* CommandPaletteNucleoFFILibrarySupport.swift */; };
 		C0DEC0DE000000000000F102 /* CommandPaletteNucleoFFITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DE000000000000F101 /* CommandPaletteNucleoFFITests.swift */; };
@@ -243,6 +238,8 @@
 		FE001104 /* FileExplorerTerminalPathInsertion.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE001004 /* FileExplorerTerminalPathInsertion.swift */; };
 		FE001102 /* FileExplorerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE001002 /* FileExplorerView.swift */; };
 		A5001441A5001441A5001441 /* FileOpenSocketSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5001440A5001440A5001440 /* FileOpenSocketSupport.swift */; };
+		C0DEC0DEC0DEC0DEC0DE0017 /* FilePreviewCodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE0018 /* FilePreviewCodeEditor.swift */; };
+		5C0DE00100000000000A0005 /* FilePreviewDiffEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0DE00100000000000A0006 /* FilePreviewDiffEditor.swift */; };
 		A5001432A5001432A5001432 /* FilePreviewFocusCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5001431A5001431A5001431 /* FilePreviewFocusCoordinator.swift */; };
 		01EE5DC99896BA30240EF1B5 /* FilePreviewImageSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1450569A797AA7937677D9 /* FilePreviewImageSession.swift */; };
 		A5001447A5001447A5001447 /* FilePreviewMagnifyingPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5001446A5001446A5001446 /* FilePreviewMagnifyingPDFView.swift */; };
@@ -286,6 +283,7 @@
 		D0B1000AA1B2C3D4E5F60001 /* GhosttyTerminalViewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B1000BA1B2C3D4E5F60001 /* GhosttyTerminalViewSupport.swift */; };
 		D7AB34400000000000000003 /* GhosttyTerminalViewVisibilityPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AB34400000000000000004 /* GhosttyTerminalViewVisibilityPolicyTests.swift */; };
 		D3284101A1B2C3D4E5F60718 /* GhosttyTextInputSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3284102A1B2C3D4E5F60718 /* GhosttyTextInputSupport.swift */; };
+		C0DEC0DEC0DEC0DEC0DE001D /* GitBlameLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DEC0DEC0DEC0DEC0DE001E /* GitBlameLine.swift */; };
 		3865A0023865A0023865A002 /* GlobalSearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3865B0023865B0023865B002 /* GlobalSearchCoordinator.swift */; };
 		3865A0073865A0073865A007 /* GlobalSearchDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3865B0073865B0073865B007 /* GlobalSearchDocuments.swift */; };
 		3865A0083865A0083865A008 /* GlobalSearchPanelCaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3865B0083865B0083865B008 /* GlobalSearchPanelCaptureManager.swift */; };
@@ -403,6 +401,8 @@
 		A50019A0 /* SettingsNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50019A1 /* SettingsNavigation.swift */; };
 		A50019B0 /* SettingsSearchAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50019B1 /* SettingsSearchAliases.swift */; };
 		A50019B2 /* SettingsSearchIndexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50019B3 /* SettingsSearchIndexTests.swift */; };
+		A11EAB100000000000000000 /* SettingsWindowContentVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11EAB100000000000000001 /* SettingsWindowContentVisibility.swift */; };
+		A11EAB200000000000000000 /* SettingsWindowContentVisibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11EAB200000000000000001 /* SettingsWindowContentVisibilityTests.swift */; };
 		D36090010000000000000001 /* SettingsWindowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36090010000000000000002 /* SettingsWindowPresenter.swift */; };
 		D36090010000000000000003 /* SettingsWindowPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36090010000000000000004 /* SettingsWindowPresenterTests.swift */; };
 		1521D55DC63D5E5FC4955E31 /* ShortcutAndCommandPaletteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6083A7DAD962E287FC2FFE94 /* ShortcutAndCommandPaletteTests.swift */; };
@@ -435,6 +435,9 @@
 		A5354301A5354301A5354301 /* SocketControlSettings+SocketPathMarkers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5354302A5354302A5354302 /* SocketControlSettings+SocketPathMarkers.swift */; };
 		A5001226 /* SocketControlSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5001225 /* SocketControlSettings.swift */; };
 		C510C1E00000000000000002 /* SocketOperationTelemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C510C1E00000000000000001 /* SocketOperationTelemetry.swift */; };
+		5C0DE00100000000000A0007 /* SourceControlGitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0DE00100000000000A0008 /* SourceControlGitTests.swift */; };
+		5C0DE00100000000000A0003 /* SourceControlPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0DE00100000000000A0004 /* SourceControlPanelView.swift */; };
+		5C0DE00100000000000A0001 /* SourceControlStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0DE00100000000000A0002 /* SourceControlStore.swift */; };
 		A5001230 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = A5001231 /* Sparkle */; };
 		E3309A0D /* SplitEqualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3309A0E /* SplitEqualizer.swift */; };
 		F6355600A1B2C3D4E5F60718 /* SSHStartupSignalLifecycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6355601A1B2C3D4E5F60718 /* SSHStartupSignalLifecycleTests.swift */; };
@@ -646,15 +649,11 @@
 		C34670010000000000000002 /* AppDelegateRenameShortcutContextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateRenameShortcutContextTests.swift; sourceTree = "<group>"; };
 		F6000001A1B2C3D4E5F60718 /* AppDelegateShortcutRoutingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateShortcutRoutingTests.swift; sourceTree = "<group>"; };
 		A11EAB000000000000000001 /* AppearanceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettings.swift; sourceTree = "<group>"; };
-		A11EAB100000000000000001 /* SettingsWindowContentVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowContentVisibility.swift; sourceTree = "<group>"; };
-		A11EAB200000000000000001 /* SettingsWindowContentVisibilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowContentVisibilityTests.swift; sourceTree = "<group>"; };
 		A11EAA000000000000000001 /* AppearanceSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettingsTests.swift; sourceTree = "<group>"; };
 		IC000002 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.icon; sourceTree = "<group>"; };
 		D1320AA0D1320AA0D1320AA4 /* AppIconDockTilePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconDockTilePlugin.swift; sourceTree = "<group>"; };
 		A5001620 /* AppleScriptSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleScriptSupport.swift; sourceTree = "<group>"; };
 		A5001101 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C0DEF4130000000000000002 /* CommandPaletteFileSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteFileSearchTests.swift; sourceTree = "<group>"; };
-		C0DEF4140000000000000002 /* CommandPaletteFilePathRankerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteFilePathRankerTests.swift; sourceTree = "<group>"; };
 		61A19A4145F034965110CF87 /* AuthCallbackRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthCallbackRouter.swift; sourceTree = "<group>"; };
 		43430FA5929121E2EAAB3091 /* AuthEnvironment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthEnvironment.swift; sourceTree = "<group>"; };
 		312DE7503B4658DD173121B8 /* AuthManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
@@ -781,7 +780,25 @@
 		A5001510 /* CmuxWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/CmuxWebView.swift; sourceTree = "<group>"; };
 		D0B1000DA1B2C3D4E5F60001 /* CmuxWebViewDragRoutingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CmuxWebViewDragRoutingTests.swift; sourceTree = "<group>"; };
 		E30750000000000000000003 /* CmuxWorkspaceDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CmuxWorkspaceDefinition.swift; sourceTree = "<group>"; };
+		C0DEC0DEC0DEC0DEC0DE0006 /* code-viewer */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; path = "code-viewer"; sourceTree = "<group>"; };
+		C0DEC0DEC0DEC0DEC0DE0002 /* CodeMirrorSpike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/CodeMirrorSpike.swift; sourceTree = "<group>"; };
+		C0DEC0DEC0DEC0DEC0DE0010 /* CodePreviewEngineSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/CodePreviewEngineSettings.swift; sourceTree = "<group>"; };
+		C0DEC0DEC0DEC0DEC0DE0016 /* CodePreviewEngineSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodePreviewEngineSettingsTests.swift; sourceTree = "<group>"; };
+		C0DEC0DEC0DEC0DEC0DE0004 /* CodeViewerAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/CodeViewerAssets.swift; sourceTree = "<group>"; };
+		C0DEC0DEC0DEC0DEC0DE001C /* CodeViewerGitBlameSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/CodeViewerGitBlameSource.swift; sourceTree = "<group>"; };
+		C0DEC0DEC0DEC0DEC0DE001A /* CodeViewerGitBlameSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewerGitBlameSourceTests.swift; sourceTree = "<group>"; };
+		C0DEC0DEC0DEC0DEC0DE000E /* CodeViewerGitDiffSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/CodeViewerGitDiffSource.swift; sourceTree = "<group>"; };
+		C0DEC0DEC0DEC0DEC0DE0014 /* CodeViewerGitDiffSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewerGitDiffSourceTests.swift; sourceTree = "<group>"; };
+		C0DEC0DEC0DEC0DEC0DE000C /* CodeViewerLanguageDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/CodeViewerLanguageDetector.swift; sourceTree = "<group>"; };
+		C0DEC0DEC0DEC0DEC0DE0012 /* CodeViewerLanguageDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewerLanguageDetectorTests.swift; sourceTree = "<group>"; };
+		C0DEC0DEC0DEC0DEC0DE0008 /* CodeWebRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/CodeWebRenderer.swift; sourceTree = "<group>"; };
+		C0DEC0DEC0DEC0DEC0DE000A /* CodeWebSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/CodeWebSupport.swift; sourceTree = "<group>"; };
 		C4041001000000000000001A /* CommandClickFileOpenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandClickFileOpenRouter.swift; sourceTree = "<group>"; };
+		C0DEFF400000000000000002 /* CommandPaletteFileIndexer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPalette/CommandPaletteFileIndexer.swift; sourceTree = "<group>"; };
+		C0DEFF700000000000000002 /* CommandPaletteFilePathRanker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPalette/CommandPaletteFilePathRanker.swift; sourceTree = "<group>"; };
+		C0DEF4140000000000000002 /* CommandPaletteFilePathRankerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteFilePathRankerTests.swift; sourceTree = "<group>"; };
+		C0DEFF600000000000000002 /* CommandPaletteFileRecentsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPalette/CommandPaletteFileRecentsStore.swift; sourceTree = "<group>"; };
+		C0DEF4130000000000000002 /* CommandPaletteFileSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteFileSearchTests.swift; sourceTree = "<group>"; };
 		C0DE32470000000000000006 /* CommandPaletteIdentifierClipboardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteIdentifierClipboardUITests.swift; sourceTree = "<group>"; };
 		C0DEC0DE000000000000F201 /* CommandPaletteNucleoFFILibrarySupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteNucleoFFILibrarySupport.swift; sourceTree = "<group>"; };
 		C0DEC0DE000000000000F101 /* CommandPaletteNucleoFFITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteNucleoFFITests.swift; sourceTree = "<group>"; };
@@ -791,9 +808,6 @@
 		38A09EB2E92203B2E95923A7 /* CommandPaletteSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPalette/CommandPaletteSearch.swift; sourceTree = "<group>"; };
 		A5008382 /* CommandPaletteSearchEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteSearchEngineTests.swift; sourceTree = "<group>"; };
 		C0DEFF300000000000000002 /* CommandPaletteSearchOrchestrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPalette/CommandPaletteSearchOrchestrator.swift; sourceTree = "<group>"; };
-		C0DEFF400000000000000002 /* CommandPaletteFileIndexer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPalette/CommandPaletteFileIndexer.swift; sourceTree = "<group>"; };
-		C0DEFF600000000000000002 /* CommandPaletteFileRecentsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPalette/CommandPaletteFileRecentsStore.swift; sourceTree = "<group>"; };
-		C0DEFF700000000000000002 /* CommandPaletteFilePathRanker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPalette/CommandPaletteFilePathRanker.swift; sourceTree = "<group>"; };
 		C0DEF4110000000000000002 /* CommandPaletteSettingsToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPalette/CommandPaletteSettingsToggle.swift; sourceTree = "<group>"; };
 		C0DEF4120000000000000002 /* CommandPaletteSettingsToggleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteSettingsToggleTests.swift; sourceTree = "<group>"; };
 			C1713005C1713005C1713005 /* CommandPaletteShortcutCustomizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteShortcutCustomizationTests.swift; sourceTree = "<group>"; };
@@ -837,27 +851,13 @@
 		FE001004 /* FileExplorerTerminalPathInsertion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExplorerTerminalPathInsertion.swift; sourceTree = "<group>"; };
 		FE001002 /* FileExplorerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExplorerView.swift; sourceTree = "<group>"; };
 		A5001440A5001440A5001440 /* FileOpenSocketSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileOpenSocketSupport.swift; sourceTree = "<group>"; };
+		C0DEC0DEC0DEC0DEC0DE0018 /* FilePreviewCodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/FilePreviewCodeEditor.swift; sourceTree = "<group>"; };
+		5C0DE00100000000000A0006 /* FilePreviewDiffEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/FilePreviewDiffEditor.swift; sourceTree = "<group>"; };
 		A5001431A5001431A5001431 /* FilePreviewFocusCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/FilePreviewFocusCoordinator.swift; sourceTree = "<group>"; };
 		7D1450569A797AA7937677D9 /* FilePreviewImageSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/FilePreviewImageSession.swift; sourceTree = "<group>"; };
 		A5001446A5001446A5001446 /* FilePreviewMagnifyingPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/FilePreviewMagnifyingPDFView.swift; sourceTree = "<group>"; };
 		64D7B3C5A409C0B3EDD002CE /* FilePreviewMediaSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/FilePreviewMediaSession.swift; sourceTree = "<group>"; };
 		A5001442A5001442A5001442 /* FilePreviewModeSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/FilePreviewModeSupport.swift; sourceTree = "<group>"; };
-		C0DEC0DEC0DEC0DEC0DE0002 /* CodeMirrorSpike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/CodeMirrorSpike.swift; sourceTree = "<group>"; };
-		C0DEC0DEC0DEC0DEC0DE0004 /* CodeViewerAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/CodeViewerAssets.swift; sourceTree = "<group>"; };
-		C0DEC0DEC0DEC0DEC0DE0006 /* code-viewer */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; path = "code-viewer"; sourceTree = "<group>"; };
-		C0DEC0DEC0DEC0DEC0DE0008 /* CodeWebRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/CodeWebRenderer.swift; sourceTree = "<group>"; };
-		C0DEC0DEC0DEC0DEC0DE000A /* CodeWebSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/CodeWebSupport.swift; sourceTree = "<group>"; };
-		C0DEC0DEC0DEC0DEC0DE000C /* CodeViewerLanguageDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/CodeViewerLanguageDetector.swift; sourceTree = "<group>"; };
-		C0DEC0DEC0DEC0DEC0DE000E /* CodeViewerGitDiffSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/CodeViewerGitDiffSource.swift; sourceTree = "<group>"; };
-		C0DEC0DEC0DEC0DEC0DE0010 /* CodePreviewEngineSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/CodePreviewEngineSettings.swift; sourceTree = "<group>"; };
-		C0DEC0DEC0DEC0DEC0DE0012 /* CodeViewerLanguageDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewerLanguageDetectorTests.swift; sourceTree = "<group>"; };
-		C0DEC0DEC0DEC0DEC0DE0014 /* CodeViewerGitDiffSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewerGitDiffSourceTests.swift; sourceTree = "<group>"; };
-		C0DEC0DEC0DEC0DEC0DE0016 /* CodePreviewEngineSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodePreviewEngineSettingsTests.swift; sourceTree = "<group>"; };
-		C0DEC0DEC0DEC0DEC0DE0018 /* FilePreviewCodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/FilePreviewCodeEditor.swift; sourceTree = "<group>"; };
-		5C0DE00100000000000A0002 /* SourceControlStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlStore.swift; sourceTree = "<group>"; };
-		5C0DE00100000000000A0004 /* SourceControlPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlPanelView.swift; sourceTree = "<group>"; };
-		5C0DE00100000000000A0006 /* FilePreviewDiffEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/FilePreviewDiffEditor.swift; sourceTree = "<group>"; };
-		5C0DE00100000000000A0008 /* SourceControlGitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlGitTests.swift; sourceTree = "<group>"; };
 		A5001451A5001451A5001451 /* FilePreviewNativeBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/FilePreviewNativeBackground.swift; sourceTree = "<group>"; };
 		81E3615490F822CA0C8527C9 /* FilePreviewNativeViewSessions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/FilePreviewNativeViewSessions.swift; sourceTree = "<group>"; };
 		A5001423 /* FilePreviewPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/FilePreviewPanel.swift; sourceTree = "<group>"; };
@@ -897,6 +897,7 @@
 		D0B1000BA1B2C3D4E5F60001 /* GhosttyTerminalViewSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhosttyTerminalViewSupport.swift; sourceTree = "<group>"; };
 		D7AB34400000000000000004 /* GhosttyTerminalViewVisibilityPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhosttyTerminalViewVisibilityPolicyTests.swift; sourceTree = "<group>"; };
 		D3284102A1B2C3D4E5F60718 /* GhosttyTextInputSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhosttyTextInputSupport.swift; sourceTree = "<group>"; };
+		C0DEC0DEC0DEC0DEC0DE001E /* GitBlameLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels/GitBlameLine.swift; sourceTree = "<group>"; };
 		3865B0023865B0023865B002 /* GlobalSearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search/GlobalSearchCoordinator.swift; sourceTree = "<group>"; };
 		3865B0073865B0073865B007 /* GlobalSearchDocuments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search/GlobalSearchDocuments.swift; sourceTree = "<group>"; };
 		3865B0083865B0083865B008 /* GlobalSearchPanelCaptureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search/GlobalSearchPanelCaptureManager.swift; sourceTree = "<group>"; };
@@ -1007,6 +1008,8 @@
 		A50019A1 /* SettingsNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNavigation.swift; sourceTree = "<group>"; };
 		A50019B1 /* SettingsSearchAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSearchAliases.swift; sourceTree = "<group>"; };
 		A50019B3 /* SettingsSearchIndexTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSearchIndexTests.swift; sourceTree = "<group>"; };
+		A11EAB100000000000000001 /* SettingsWindowContentVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowContentVisibility.swift; sourceTree = "<group>"; };
+		A11EAB200000000000000001 /* SettingsWindowContentVisibilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowContentVisibilityTests.swift; sourceTree = "<group>"; };
 		D36090010000000000000002 /* SettingsWindowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/SettingsWindowPresenter.swift; sourceTree = "<group>"; };
 		D36090010000000000000004 /* SettingsWindowPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowPresenterTests.swift; sourceTree = "<group>"; };
 		6083A7DAD962E287FC2FFE94 /* ShortcutAndCommandPaletteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutAndCommandPaletteTests.swift; sourceTree = "<group>"; };
@@ -1039,6 +1042,9 @@
 		A5354302A5354302A5354302 /* SocketControlSettings+SocketPathMarkers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SocketControlSettings+SocketPathMarkers.swift"; sourceTree = "<group>"; };
 		A5001225 /* SocketControlSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketControlSettings.swift; sourceTree = "<group>"; };
 		C510C1E00000000000000001 /* SocketOperationTelemetry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketOperationTelemetry.swift; sourceTree = "<group>"; };
+		5C0DE00100000000000A0008 /* SourceControlGitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlGitTests.swift; sourceTree = "<group>"; };
+		5C0DE00100000000000A0004 /* SourceControlPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlPanelView.swift; sourceTree = "<group>"; };
+		5C0DE00100000000000A0002 /* SourceControlStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlStore.swift; sourceTree = "<group>"; };
 		E3309A0E /* SplitEqualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitEqualizer.swift; sourceTree = "<group>"; };
 		F6355601A1B2C3D4E5F60718 /* SSHStartupSignalLifecycleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHStartupSignalLifecycleTests.swift; sourceTree = "<group>"; };
 		D35B71010000000000000002 /* StartupBreadcrumbLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/StartupBreadcrumbLog.swift; sourceTree = "<group>"; };
@@ -1558,6 +1564,8 @@
 				C0DEC0DEC0DEC0DEC0DE000A /* CodeWebSupport.swift */,
 				C0DEC0DEC0DEC0DEC0DE000C /* CodeViewerLanguageDetector.swift */,
 				C0DEC0DEC0DEC0DEC0DE000E /* CodeViewerGitDiffSource.swift */,
+				C0DEC0DEC0DEC0DEC0DE001C /* CodeViewerGitBlameSource.swift */,
+				C0DEC0DEC0DEC0DEC0DE001E /* GitBlameLine.swift */,
 				C0DEC0DEC0DEC0DEC0DE0010 /* CodePreviewEngineSettings.swift */,
 				C0DEC0DEC0DEC0DEC0DE0018 /* FilePreviewCodeEditor.swift */,
 				5C0DE00100000000000A0002 /* SourceControlStore.swift */,
@@ -1764,6 +1772,7 @@
 				D3664001D3664001D3664001 /* MarkdownPanelTests.swift */,
 				C0DEC0DEC0DEC0DEC0DE0012 /* CodeViewerLanguageDetectorTests.swift */,
 				C0DEC0DEC0DEC0DEC0DE0014 /* CodeViewerGitDiffSourceTests.swift */,
+				C0DEC0DEC0DEC0DEC0DE001A /* CodeViewerGitBlameSourceTests.swift */,
 				5C0DE00100000000000A0008 /* SourceControlGitTests.swift */,
 				C0DEC0DEC0DEC0DEC0DE0016 /* CodePreviewEngineSettingsTests.swift */,
 				C0DE31390000000000000104 /* FilePreviewReviewFeedbackTests.swift */,
@@ -2016,6 +2025,7 @@
 			files = (
 				A5001100 /* Assets.xcassets in Resources */,
 				A5001623 /* cmux.sdef in Resources */,
+				C0DEC0DEC0DEC0DEC0DE0005 /* code-viewer in Resources */,
 				FEED0A00000000000000F007 /* feed-tui in Resources */,
 				DA7A10CA710E000000000004 /* InfoPlist.xcstrings in Resources */,
 				DA7A10CA710E000000000003 /* Localizable.xcstrings in Resources */,
@@ -2023,7 +2033,6 @@
 				FEED0000000000000000F007 /* opencode-plugin.js in Resources */,
 				A5002000 /* THIRD_PARTY_LICENSES.md in Resources */,
 				84E00D47E4584162AE53BC8D /* xterm-ghostty in Resources */,
-				C0DEC0DEC0DEC0DEC0DE0005 /* code-viewer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2132,7 +2141,6 @@
 				2907A0012907A0012907A001 /* AppDelegate+RecoverableMainWindowRoutes.swift in Sources */,
 				A5001093 /* AppDelegate.swift in Sources */,
 				A11EAB000000000000000000 /* AppearanceSettings.swift in Sources */,
-				A11EAB100000000000000000 /* SettingsWindowContentVisibility.swift in Sources */,
 				A5001621 /* AppleScriptSupport.swift in Sources */,
 				36CE99ED050785B5E96B72BB /* AuthCallbackRouter.swift in Sources */,
 				D9FEC58D5BACCF76459F1BBE /* AuthEnvironment.swift in Sources */,
@@ -2195,14 +2203,22 @@
 				D7AB00000000000000000009 /* CmuxWebView+MoveTabToNewWorkspace.swift in Sources */,
 				A5001500 /* CmuxWebView.swift in Sources */,
 				E30750000000000000000004 /* CmuxWorkspaceDefinition.swift in Sources */,
+				C0DEC0DEC0DEC0DEC0DE0001 /* CodeMirrorSpike.swift in Sources */,
+				C0DEC0DEC0DEC0DEC0DE000F /* CodePreviewEngineSettings.swift in Sources */,
+				C0DEC0DEC0DEC0DEC0DE0003 /* CodeViewerAssets.swift in Sources */,
+				C0DEC0DEC0DEC0DEC0DE001B /* CodeViewerGitBlameSource.swift in Sources */,
+				C0DEC0DEC0DEC0DEC0DE000D /* CodeViewerGitDiffSource.swift in Sources */,
+				C0DEC0DEC0DEC0DEC0DE000B /* CodeViewerLanguageDetector.swift in Sources */,
+				C0DEC0DEC0DEC0DEC0DE0007 /* CodeWebRenderer.swift in Sources */,
+				C0DEC0DEC0DEC0DEC0DE0009 /* CodeWebSupport.swift in Sources */,
 				C4041001000000000000001B /* CommandClickFileOpenRouter.swift in Sources */,
+				C0DEFF400000000000000001 /* CommandPaletteFileIndexer.swift in Sources */,
+				C0DEFF700000000000000001 /* CommandPaletteFilePathRanker.swift in Sources */,
+				C0DEFF600000000000000001 /* CommandPaletteFileRecentsStore.swift in Sources */,
 				C0DEFF100000000000000001 /* CommandPaletteNucleoSearch.swift in Sources */,
 				C0DEFF200000000000000001 /* CommandPaletteOverlay.swift in Sources */,
 				A8CBA43C2DA5AB9E3A1E65A4 /* CommandPaletteSearch.swift in Sources */,
 				C0DEFF300000000000000001 /* CommandPaletteSearchOrchestrator.swift in Sources */,
-				C0DEFF400000000000000001 /* CommandPaletteFileIndexer.swift in Sources */,
-				C0DEFF600000000000000001 /* CommandPaletteFileRecentsStore.swift in Sources */,
-				C0DEFF700000000000000001 /* CommandPaletteFilePathRanker.swift in Sources */,
 				C0DEF4110000000000000001 /* CommandPaletteSettingsToggle.swift in Sources */,
 				C1713002C1713002C1713002 /* CommandPaletteShortcutRouting.swift in Sources */,
 				3023A1013023A1013023A101 /* ConfigSettingsView.swift in Sources */,
@@ -2236,6 +2252,8 @@
 				FE001104 /* FileExplorerTerminalPathInsertion.swift in Sources */,
 				FE001102 /* FileExplorerView.swift in Sources */,
 					A5001441A5001441A5001441 /* FileOpenSocketSupport.swift in Sources */,
+				C0DEC0DEC0DEC0DEC0DE0017 /* FilePreviewCodeEditor.swift in Sources */,
+				5C0DE00100000000000A0005 /* FilePreviewDiffEditor.swift in Sources */,
 				A5001432A5001432A5001432 /* FilePreviewFocusCoordinator.swift in Sources */,
 				01EE5DC99896BA30240EF1B5 /* FilePreviewImageSession.swift in Sources */,
 				A5001447A5001447A5001447 /* FilePreviewMagnifyingPDFView.swift in Sources */,
@@ -2265,6 +2283,7 @@
 				A5001005 /* GhosttyTerminalView.swift in Sources */,
 				D0B1000AA1B2C3D4E5F60001 /* GhosttyTerminalViewSupport.swift in Sources */,
 				D3284101A1B2C3D4E5F60718 /* GhosttyTextInputSupport.swift in Sources */,
+				C0DEC0DEC0DEC0DEC0DE001D /* GitBlameLine.swift in Sources */,
 				3865A0023865A0023865A002 /* GlobalSearchCoordinator.swift in Sources */,
 				3865A0073865A0073865A007 /* GlobalSearchDocuments.swift in Sources */,
 				3865A0083865A0083865A008 /* GlobalSearchPanelCaptureManager.swift in Sources */,
@@ -2334,6 +2353,7 @@
 				D9CCF002D9CCF002D9CCF002 /* SettingsLazyLoadHelpers.swift in Sources */,
 				A50019A0 /* SettingsNavigation.swift in Sources */,
 				A50019B0 /* SettingsSearchAliases.swift in Sources */,
+				A11EAB100000000000000000 /* SettingsWindowContentVisibility.swift in Sources */,
 				D36090010000000000000001 /* SettingsWindowPresenter.swift in Sources */,
 				76027A12C93B4538BF22C71E /* ShortcutBareStartRouting.swift in Sources */,
 				125BAEF2FE3B454547B964D1 /* ShortcutHintPill.swift in Sources */,
@@ -2351,6 +2371,8 @@
 				988C6A036BA56EA5759A95A0 /* SidebarWorkspaceSnapshotRefreshPolicy.swift in Sources */,
 				A5354301A5354301A5354301 /* SocketControlSettings+SocketPathMarkers.swift in Sources */,
 				A5001226 /* SocketControlSettings.swift in Sources */,
+				5C0DE00100000000000A0003 /* SourceControlPanelView.swift in Sources */,
+				5C0DE00100000000000A0001 /* SourceControlStore.swift in Sources */,
 					E3309A0D /* SplitEqualizer.swift in Sources */,
 				D35B71010000000000000001 /* StartupBreadcrumbLog.swift in Sources */,
 				A5001303 /* SurfaceSearchOverlay.swift in Sources */,
@@ -2388,17 +2410,6 @@
 				E30760000000000000000002 /* TmuxWorkspacePaneOverlayView.swift in Sources */,
 				A5001501 /* UITestRecorder.swift in Sources */,
 				A5001206 /* UpdateBadge.swift in Sources */,
-				C0DEC0DEC0DEC0DEC0DE0001 /* CodeMirrorSpike.swift in Sources */,
-				C0DEC0DEC0DEC0DEC0DE0003 /* CodeViewerAssets.swift in Sources */,
-				C0DEC0DEC0DEC0DEC0DE0007 /* CodeWebRenderer.swift in Sources */,
-				C0DEC0DEC0DEC0DEC0DE0009 /* CodeWebSupport.swift in Sources */,
-				C0DEC0DEC0DEC0DEC0DE000B /* CodeViewerLanguageDetector.swift in Sources */,
-				C0DEC0DEC0DEC0DEC0DE000D /* CodeViewerGitDiffSource.swift in Sources */,
-				C0DEC0DEC0DEC0DEC0DE000F /* CodePreviewEngineSettings.swift in Sources */,
-				C0DEC0DEC0DEC0DEC0DE0017 /* FilePreviewCodeEditor.swift in Sources */,
-				5C0DE00100000000000A0001 /* SourceControlStore.swift in Sources */,
-				5C0DE00100000000000A0003 /* SourceControlPanelView.swift in Sources */,
-				5C0DE00100000000000A0005 /* FilePreviewDiffEditor.swift in Sources */,
 				A5001201 /* UpdateController.swift in Sources */,
 				A5001202 /* UpdateDelegate.swift in Sources */,
 				A5001203 /* UpdateDriver.swift in Sources */,
@@ -2531,7 +2542,6 @@
 				C34670010000000000000001 /* AppDelegateRenameShortcutContextTests.swift in Sources */,
 				F6000000A1B2C3D4E5F60718 /* AppDelegateShortcutRoutingTests.swift in Sources */,
 				A11EAA000000000000000000 /* AppearanceSettingsTests.swift in Sources */,
-				A11EAB200000000000000000 /* SettingsWindowContentVisibilityTests.swift in Sources */,
 				D3622000A1B2C3D4E5F60718 /* BrowserArrowKeyForwardingTests.swift in Sources */,
 				E12E88F82733EC42F32C36A3 /* BrowserConfigTests.swift in Sources */,
 				A5008381 /* BrowserFindJavaScriptTests.swift in Sources */,
@@ -2560,6 +2570,12 @@
 				C7A50C000000000000000002 /* CmuxTopProcessCPUTests.swift in Sources */,
 				C7A509000000000000000002 /* CmuxTopSnapshotScopeTests.swift in Sources */,
 				D0B1000CA1B2C3D4E5F60001 /* CmuxWebViewDragRoutingTests.swift in Sources */,
+				C0DEC0DEC0DEC0DEC0DE0015 /* CodePreviewEngineSettingsTests.swift in Sources */,
+				C0DEC0DEC0DEC0DEC0DE0019 /* CodeViewerGitBlameSourceTests.swift in Sources */,
+				C0DEC0DEC0DEC0DEC0DE0013 /* CodeViewerGitDiffSourceTests.swift in Sources */,
+				C0DEC0DEC0DEC0DEC0DE0011 /* CodeViewerLanguageDetectorTests.swift in Sources */,
+				C0DEF4140000000000000001 /* CommandPaletteFilePathRankerTests.swift in Sources */,
+				C0DEF4130000000000000001 /* CommandPaletteFileSearchTests.swift in Sources */,
 				C0DEC0DE000000000000F202 /* CommandPaletteNucleoFFILibrarySupport.swift in Sources */,
 				C0DEC0DE000000000000F102 /* CommandPaletteNucleoFFITests.swift in Sources */,
 				C0DEC0DE000000000000F204 /* CommandPaletteNucleoFixtures.swift in Sources */,
@@ -2593,12 +2609,6 @@
 				C34670040000000000000001 /* KeyboardShortcutTestSettingsIsolation.swift in Sources */,
 				17C9F5BA0DD14EDC8C3E5001 /* MainWindowVisibilityControllerTests.swift in Sources */,
 				D3664002D3664002D3664002 /* MarkdownPanelTests.swift in Sources */,
-				C0DEC0DEC0DEC0DEC0DE0011 /* CodeViewerLanguageDetectorTests.swift in Sources */,
-				C0DEC0DEC0DEC0DEC0DE0013 /* CodeViewerGitDiffSourceTests.swift in Sources */,
-				5C0DE00100000000000A0007 /* SourceControlGitTests.swift in Sources */,
-				C0DEC0DEC0DEC0DEC0DE0015 /* CodePreviewEngineSettingsTests.swift in Sources */,
-				C0DEF4130000000000000001 /* CommandPaletteFileSearchTests.swift in Sources */,
-				C0DEF4140000000000000001 /* CommandPaletteFilePathRankerTests.swift in Sources */,
 					734F49D37E543DD01C2F4FEF /* NotificationAndMenuBarTests.swift in Sources */,
 					4378399A7C0245EF8186F306 /* OmnibarAndToolsTests.swift in Sources */,
 					A5E01203A1B2C3D4E5F60718 /* OpenCodeHookRegressionTests.swift in Sources */,
@@ -2619,6 +2629,7 @@
 				8A3392FE64E0605D942213D1 /* SessionIndexViewTests.swift in Sources */,
 					F5000000A1B2C3D4E5F60718 /* SessionPersistenceTests.swift in Sources */,
 				A50019B2 /* SettingsSearchIndexTests.swift in Sources */,
+				A11EAB200000000000000000 /* SettingsWindowContentVisibilityTests.swift in Sources */,
 				D36090010000000000000003 /* SettingsWindowPresenterTests.swift in Sources */,
 				1521D55DC63D5E5FC4955E31 /* ShortcutAndCommandPaletteTests.swift in Sources */,
 				F6001000A1B2C3D4E5F60718 /* ShortcutUnbindingTests.swift in Sources */,
@@ -2630,6 +2641,7 @@
 				D7AB34300000000000000005 /* SidebarWorkspaceDropPlannerTests.swift in Sources */,
 				62270F3DCECB4787D789CCE3 /* SidebarWorkspaceSnapshotRefreshPolicyTests.swift in Sources */,
 				F8000000A1B2C3D4E5F60718 /* SocketControlPasswordStoreTests.swift in Sources */,
+				5C0DE00100000000000A0007 /* SourceControlGitTests.swift in Sources */,
 				F6355600A1B2C3D4E5F60718 /* SSHStartupSignalLifecycleTests.swift in Sources */,
 				2BB56A710BB1FC50367E5BCF /* TabManagerSessionSnapshotTests.swift in Sources */,
 				B6BF3DC98DB1495E57900199 /* TabManagerUnitTests.swift in Sources */,

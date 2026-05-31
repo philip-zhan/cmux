@@ -134,6 +134,7 @@ private struct CodeMirrorSpikeDebugView: View {
                 isReadOnly: model.isReadOnly,
                 diffOriginal: model.diffEnabled ? (model.diffOriginal ?? CodeMirrorSpikeSample.swift) : nil,
                 diffModified: model.diffEnabled ? (model.diffModified ?? CodeMirrorSpikeSample.swiftModified) : nil,
+                blameLines: nil,
                 backgroundColor: model.backgroundColor,
                 panelId: model.panelId,
                 workspaceId: model.workspaceId,

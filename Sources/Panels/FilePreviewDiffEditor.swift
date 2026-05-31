@@ -26,6 +26,7 @@ where PanelModel: ObservableObject & CodeMirrorEditingPanel {
             isReadOnly: false,
             diffOriginal: diffOriginal,
             diffModified: diffModified,
+            blameLines: nil,
             backgroundColor: rendererBackgroundColor,
             panelId: panel.id,
             workspaceId: panel.workspaceId,

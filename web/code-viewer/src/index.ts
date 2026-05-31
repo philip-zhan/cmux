@@ -1,7 +1,16 @@
-import { Compartment, EditorState, type Extension } from "@codemirror/state";
 import {
+  Compartment,
+  EditorState,
+  StateEffect,
+  StateField,
+  type Extension,
+} from "@codemirror/state";
+import {
+  Decoration,
+  type DecorationSet,
   EditorView,
   type Panel,
+  WidgetType,
   drawSelection,
   highlightActiveLine,
   highlightActiveLineGutter,
@@ -496,6 +505,124 @@ function searchPanelTheme(): Extension {
   });
 }
 
+// --- Inline git blame (current line only) -----------------------------------
+//
+// Swift sends the whole-file blame once per load via `__cmuxCodeSetBlame`. We
+// keep it in a StateField and render a single end-of-line annotation on the
+// line the cursor is on (GitLens-style), recomputed whenever the selection,
+// document, or blame data changes.
+
+type BlameLine = {
+  h: string; // short hash ("" when uncommitted)
+  a: string; // author ("You" when uncommitted)
+  t: number; // author time, epoch seconds (0 when uncommitted)
+  s: string; // commit summary ("" when uncommitted)
+  u: boolean; // isUncommitted
+};
+
+const setBlameEffect = StateEffect.define<BlameLine[] | null>();
+
+const blameDataField = StateField.define<BlameLine[] | null>({
+  create: () => null,
+  update(value, tr) {
+    for (const effect of tr.effects) {
+      if (effect.is(setBlameEffect)) return effect.value;
+    }
+    return value;
+  },
+});
+
+function relativeTime(epochSeconds: number): string {
+  if (!epochSeconds) return "";
+  const seconds = Math.floor(Date.now() / 1000) - epochSeconds;
+  if (seconds < 60) return "just now";
+  const units: [number, string][] = [
+    [60, "minute"],
+    [60, "hour"],
+    [24, "day"],
+    [7, "week"],
+    [4.345, "month"],
+    [12, "year"],
+  ];
+  let value = seconds / 60;
+  let unit = "minute";
+  for (let i = 1; i < units.length; i++) {
+    if (value < units[i][0]) break;
+    value /= units[i][0];
+    unit = units[i][1];
+  }
+  const rounded = Math.floor(value);
+  return `${rounded} ${unit}${rounded === 1 ? "" : "s"} ago`;
+}
+
+function blameText(line: BlameLine): string {
+  if (line.u) return "You · Uncommitted changes";
+  const when = relativeTime(line.t);
+  const summary = line.s.length > 60 ? `${line.s.slice(0, 59)}…` : line.s;
+  return [line.a, when, summary].filter(Boolean).join(" · ");
+}
+
+class BlameWidget extends WidgetType {
+  constructor(readonly text: string) {
+    super();
+  }
+  eq(other: BlameWidget) {
+    return other.text === this.text;
+  }
+  toDOM() {
+    const span = document.createElement("span");
+    span.className = "cm-blame-annotation";
+    span.textContent = this.text;
+    return span;
+  }
+  ignoreEvent() {
+    return true;
+  }
+}
+
+function buildBlameDecorations(state: EditorState): DecorationSet {
+  const blame = state.field(blameDataField, false);
+  if (!blame || blame.length === 0) return Decoration.none;
+  const head = state.selection.main.head;
+  const line = state.doc.lineAt(head);
+  const entry = blame[line.number - 1];
+  if (!entry) return Decoration.none;
+  const text = blameText(entry);
+  if (!text) return Decoration.none;
+  const deco = Decoration.widget({
+    widget: new BlameWidget(text),
+    side: 1,
+  });
+  return Decoration.set([deco.range(line.to)]);
+}
+
+const blameDecorationField = StateField.define<DecorationSet>({
+  create: buildBlameDecorations,
+  update(deco, tr) {
+    const blameChanged = tr.effects.some((e) => e.is(setBlameEffect));
+    if (tr.docChanged || tr.selection || blameChanged) {
+      return buildBlameDecorations(tr.state);
+    }
+    return deco.map(tr.changes);
+  },
+  provide: (f) => EditorView.decorations.from(f),
+});
+
+const blameTheme = EditorView.baseTheme({
+  ".cm-blame-annotation": {
+    paddingLeft: "2.5em",
+    opacity: "0.5",
+    fontStyle: "italic",
+    userSelect: "none",
+    pointerEvents: "none",
+    whiteSpace: "pre",
+  },
+});
+
+function blameExtension(): Extension {
+  return [blameDataField, blameDecorationField, blameTheme];
+}
+
 function baseExtensions(): Extension[] {
   return [
     lineNumbers(),
@@ -521,6 +648,7 @@ function baseExtensions(): Extension[] {
 
 let editor: EditorView | null = null;
 let mergeView: MergeView | null = null;
+let lastBlame: BlameLine[] | null = null;
 
 function teardown() {
   if (mergeView) {
@@ -537,8 +665,16 @@ function mountSingle(parent: HTMLElement, content: string) {
   teardown();
   editor = new EditorView({
     parent,
-    state: EditorState.create({ doc: content, extensions: baseExtensions() }),
+    state: EditorState.create({
+      doc: content,
+      extensions: [...baseExtensions(), blameExtension()],
+    }),
   });
+  // Re-apply any blame captured before this (re)mount so an editor recreated by
+  // a payload change keeps its annotation.
+  if (lastBlame) {
+    editor.dispatch({ effects: setBlameEffect.of(lastBlame) });
+  }
 }
 
 function mountDiff(parent: HTMLElement, original: string, modified: string) {
@@ -692,6 +828,7 @@ declare global {
     __cmuxCodeApply?: (payload: Payload | string) => void;
     __cmuxCodeGet?: () => string;
     __cmuxCodeSetFontSize?: (px: number) => void;
+    __cmuxCodeSetBlame?: (blame: BlameLine[] | string | null) => void;
   }
 }
 
@@ -718,6 +855,13 @@ window.__cmuxCodeGet = function () {
 
 window.__cmuxCodeSetFontSize = function (px) {
   applyFontSize(px);
+};
+
+window.__cmuxCodeSetBlame = function (blame) {
+  const parsed: BlameLine[] | null =
+    typeof blame === "string" ? JSON.parse(blame) : blame;
+  lastBlame = parsed;
+  editor?.dispatch({ effects: setBlameEffect.of(parsed) });
 };
 
 document.documentElement.dataset.cmuxCodeViewerReady = "1";

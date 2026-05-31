@@ -15,6 +15,10 @@ struct CodeWebRenderer: NSViewRepresentable {
     let isReadOnly: Bool
     let diffOriginal: String?
     let diffModified: String?
+    /// Per-line git blame for the current-line inline annotation, or `nil` when
+    /// unavailable. Sent out-of-band (not via the payload) so it never remounts
+    /// the editor — see `Coordinator.applyBlame`.
+    let blameLines: [GitBlameLine]?
     let backgroundColor: NSColor
     let panelId: UUID
     let workspaceId: UUID
@@ -61,6 +65,7 @@ struct CodeWebRenderer: NSViewRepresentable {
         applyAppearance(to: webView, isDark: theme.isDark)
 
         context.coordinator.webView = webView
+        context.coordinator.blameLines = blameLines
         context.coordinator.loadShell(initialPayload: currentPayload())
         return webView
     }
@@ -71,6 +76,7 @@ struct CodeWebRenderer: NSViewRepresentable {
         applyBackground(to: nsView)
         applyAppearance(to: nsView, isDark: theme.isDark)
         context.coordinator.update(payload: currentPayload())
+        context.coordinator.updateBlame(blameLines)
     }
 
     static func dismantleNSView(_ nsView: WKWebView, coordinator: Coordinator) {
@@ -144,6 +150,10 @@ struct CodeWebRenderer: NSViewRepresentable {
         var onContentChanged: (String) -> Void = { _ in }
         var onFontSizeChanged: (Int) -> Void = { _ in }
 
+        /// Latest blame to display. Tracked outside the payload (like font size)
+        /// so applying it never remounts the editor. Re-sent after every
+        /// (re)load via the `didFinish` handler.
+        var blameLines: [GitBlameLine]?
         private var isLoaded = false
         private var isShellLoading = false
         private var pendingPayload: CodeWebRendererPayload?
@@ -211,6 +221,30 @@ struct CodeWebRenderer: NSViewRepresentable {
             }
         }
 
+        /// Stores `next` and pushes it to the editor when it differs from what
+        /// was last sent. Cheap no-op when blame is unchanged across rebuilds.
+        func updateBlame(_ next: [GitBlameLine]?) {
+            guard next != blameLines else { return }
+            blameLines = next
+            applyBlame()
+        }
+
+        /// Sends the current blame to the JS editor via the dedicated bridge
+        /// function. Safe to call before the shell loads — `didFinish` re-sends.
+        private func applyBlame() {
+            guard let webView, isLoaded else { return }
+            let json: String
+            if let blameLines,
+               let data = try? JSONEncoder().encode(blameLines),
+               let encoded = String(data: data, encoding: .utf8) {
+                json = encoded
+            } else {
+                json = "null"
+            }
+            let js = "window.__cmuxCodeSetBlame && window.__cmuxCodeSetBlame(\(json));"
+            webView.evaluateJavaScript(js, completionHandler: nil)
+        }
+
         func applyFontSize(_ size: Int) {
             guard let webView, isLoaded else {
                 onFontSizeChanged(size)
@@ -246,9 +280,11 @@ struct CodeWebRenderer: NSViewRepresentable {
                   let action = body["action"] as? String else { return }
             switch action {
             case "ready":
+                isLoaded = true
                 if let pending = pendingPayload {
                     apply(payload: pending)
                 }
+                applyBlame()
             case "contentChanged":
                 let content = (body["content"] as? String) ?? ""
                 onContentChanged(content)
@@ -268,6 +304,8 @@ struct CodeWebRenderer: NSViewRepresentable {
                 apply(payload: payload)
                 lastPayload = payload
             }
+            // The payload remounts a fresh editor; re-attach the current blame.
+            applyBlame()
         }
 
         func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {

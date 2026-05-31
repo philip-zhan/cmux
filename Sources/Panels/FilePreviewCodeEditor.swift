@@ -19,8 +19,17 @@ protocol CodeMirrorEditingPanel: AnyObject, FilePreviewTextEditingPanel {
     /// prop so per-keystroke edits don't churn the WebKit payload.
     var codeEditorBaseContent: String { get }
     var codeRendererSession: CodeRendererSession { get }
+    /// Per-line git blame driving the current-line inline annotation, or `nil`
+    /// when blame is unavailable or not applicable (e.g. the markdown viewer).
+    var blameLines: [GitBlameLine]? { get }
     func noteCodeEditorPointerFocus()
     func attachCodeEditorFocus(view: NSView)
+}
+
+extension CodeMirrorEditingPanel {
+    /// Default: no blame. Panels that source git blame (e.g. `FilePreviewPanel`)
+    /// override this with a stored property.
+    var blameLines: [GitBlameLine]? { nil }
 }
 
 /// SwiftUI wrapper that drives `CodeWebRenderer` from a `CodeMirrorEditingPanel`.
@@ -49,6 +58,7 @@ where PanelModel: ObservableObject & CodeMirrorEditingPanel {
             isReadOnly: false,
             diffOriginal: nil,
             diffModified: nil,
+            blameLines: panel.blameLines,
             backgroundColor: rendererBackgroundColor,
             panelId: panel.id,
             workspaceId: panel.workspaceId,
