@@ -2,6 +2,11 @@
 
 All notable changes to cmux are documented here.
 
+## [1.64.18] - 2026-05-30
+
+### Added
+- Inline git blame in the file editor: the line the cursor is on shows its commit author, relative date, and summary at the end of the line
+
 ## [1.64.17] - 2026-05-28
 
 ### Added
