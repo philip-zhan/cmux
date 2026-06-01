@@ -61,9 +61,17 @@ final class SourceControlStore: ObservableObject {
 
     private(set) var directory: String?
     private var repoRoot: String?
-    private var gitDirWatcher: FileExplorerDirectoryWatcher?
-    private var rootWatcher: FileExplorerDirectoryWatcher?
+    private var workingTreeWatcher: RecursiveFileSystemWatcher?
     private var refreshGeneration = 0
+    /// True while a `git status` invocation is in flight. Used to coalesce
+    /// overlapping refresh requests so only one status runs at a time.
+    private var isRefreshing = false
+    /// Set when a refresh is requested while one is already running. The
+    /// in-flight refresh runs exactly one more pass when it finishes. This is
+    /// what breaks the "`git status` rewrites `.git/index` → file event →
+    /// refresh → …" loop: the follow-up pass finds the index already current,
+    /// so it writes nothing and no further event fires.
+    private var refreshQueued = false
 
     var hasChanges: Bool {
         !stagedChanges.isEmpty || !unstagedChanges.isEmpty || !untrackedChanges.isEmpty
@@ -98,6 +106,13 @@ final class SourceControlStore: ObservableObject {
             clearChanges()
             return
         }
+        // Coalesce: if a status is already running, request exactly one more
+        // pass when it completes instead of launching a concurrent invocation.
+        if isRefreshing {
+            refreshQueued = true
+            return
+        }
+        isRefreshing = true
         refreshGeneration += 1
         let generation = refreshGeneration
         isLoading = true
@@ -106,8 +121,15 @@ final class SourceControlStore: ObservableObject {
             let result = await Task.detached(priority: .userInitiated) {
                 SourceControlGit.status(directory: directory)
             }.value
-            guard let self, self.refreshGeneration == generation else { return }
-            self.apply(result)
+            guard let self else { return }
+            self.isRefreshing = false
+            if self.refreshGeneration == generation {
+                self.apply(result)
+            }
+            if self.refreshQueued {
+                self.refreshQueued = false
+                self.refresh()
+            }
         }
     }
 
@@ -131,7 +153,7 @@ final class SourceControlStore: ObservableObject {
         unstagedChanges = result.changes.filter { !$0.isStaged && $0.kind != .untracked }
         untrackedChanges = result.changes.filter { !$0.isStaged && $0.kind == .untracked }
 
-        if rootChanged || gitDirWatcher == nil {
+        if rootChanged || workingTreeWatcher == nil {
             startWatching(repoRoot: root)
         }
     }
@@ -172,37 +194,55 @@ final class SourceControlStore: ObservableObject {
 
     private func startWatching(repoRoot: String) {
         stopWatching()
-        // Watch the reflog, not the whole `.git` directory: `git status`
-        // rewrites `.git/index`, so watching `.git` would make every refresh
-        // re-trigger itself in an endless loop. `.git/logs/HEAD` is appended
-        // only by ref-moving operations (commit, checkout, reset, merge) and
-        // is never touched by `git status`. The repo root catches new
-        // top-level files. Deeper working-tree edits and stage-only changes
-        // rely on the manual refresh and the refresh-on-appear hook.
-        let reflog = (repoRoot as NSString).appendingPathComponent(".git/logs/HEAD")
-        let gitWatcher = FileExplorerDirectoryWatcher { [weak self] in
-            self?.refresh()
+        // Recursively watch the whole repository — working tree and `.git`
+        // alike — so edits in subdirectories and staging writes under `.git`
+        // refresh the panel, the way VS Code and Zed do. We deliberately do not
+        // narrow the watch to dodge the "`git status` rewrites `.git/index` →
+        // file event → refresh → …" loop. Instead `refresh()` coalesces while a
+        // status run is in flight, so the index rewrite settles after one extra
+        // pass. `.git/*.lock` churn that accompanies every git operation is
+        // filtered out below to avoid spurious refreshes.
+        let watcher = RecursiveFileSystemWatcher(paths: [repoRoot]) { [weak self] changedPaths in
+            guard Self.changesWarrantRefresh(changedPaths, repoRoot: repoRoot) else { return }
+            Task { @MainActor in
+                self?.refresh()
+            }
         }
-        gitWatcher.watch(path: reflog)
-        gitDirWatcher = gitWatcher
+        workingTreeWatcher = watcher
+    }
 
-        let rootWatcher = FileExplorerDirectoryWatcher { [weak self] in
-            self?.refresh()
+    /// Decides whether a batch of changed paths should trigger a `git status`.
+    ///
+    /// Working-tree edits always do. Paths inside `.git` do too, except lock
+    /// files (`index.lock`, `HEAD.lock`, `config.lock`, …) and watchman cookies
+    /// that git and tooling create and delete around every operation — those
+    /// would otherwise cause a redundant refresh on each git command.
+    private nonisolated static func changesWarrantRefresh(_ paths: [String], repoRoot: String) -> Bool {
+        // An empty batch means FSEvents could not attribute paths; refresh to
+        // stay correct rather than miss a change.
+        guard !paths.isEmpty else { return true }
+        let gitDir = (repoRoot as NSString).appendingPathComponent(".git")
+        let gitPrefix = gitDir + "/"
+        for path in paths {
+            guard path == gitDir || path.hasPrefix(gitPrefix) else {
+                return true // working-tree change
+            }
+            let name = (path as NSString).lastPathComponent
+            if name.hasSuffix(".lock") || name.hasPrefix(".watchman-cookie") {
+                continue
+            }
+            return true // meaningful `.git` change (index, HEAD, refs, …)
         }
-        rootWatcher.watch(path: repoRoot)
-        self.rootWatcher = rootWatcher
+        return false
     }
 
     private func stopWatching() {
-        gitDirWatcher?.stop()
-        gitDirWatcher = nil
-        rootWatcher?.stop()
-        rootWatcher = nil
+        workingTreeWatcher?.stop()
+        workingTreeWatcher = nil
     }
 
     deinit {
-        gitDirWatcher?.stop()
-        rootWatcher?.stop()
+        workingTreeWatcher?.stop()
     }
 }
 
