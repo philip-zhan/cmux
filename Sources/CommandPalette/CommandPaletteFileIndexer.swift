@@ -2,8 +2,8 @@ import Combine
 import Darwin
 import Foundation
 
-/// Snapshot of a `fd`-produced file list for a single workspace root. Consumed by the
-/// command palette `.files` scope to populate its search corpus.
+/// Snapshot of an `rg --files`-produced file list for a single workspace root.
+/// Consumed by the command palette `.files` scope to populate its search corpus.
 struct CommandPaletteFileIndexSnapshot: Sendable, Equatable {
     enum Status: Sendable, Equatable {
         case idle
@@ -13,8 +13,8 @@ struct CommandPaletteFileIndexSnapshot: Sendable, Equatable {
     }
 
     enum Reason: Sendable, Equatable {
-        case fdNotInstalled
-        case fdFailed(exitCode: Int32)
+        case rgNotInstalled
+        case rgFailed(exitCode: Int32)
         case cancelled
     }
 
@@ -24,7 +24,7 @@ struct CommandPaletteFileIndexSnapshot: Sendable, Equatable {
         /// Final path component of `relativePath`.
         let fileName: String
         /// Pre-lowercased basename for the substring ranker. Computed off-main while
-        /// reading `fd` so per-keystroke search avoids the locale-aware fold cost.
+        /// reading `rg` so per-keystroke search avoids the locale-aware fold cost.
         let fileNameLower: String
         /// Pre-lowercased relative path for the substring ranker.
         let relativePathLower: String
@@ -69,13 +69,9 @@ final class CommandPaletteFileIndexer: ObservableObject {
     static let maxEntries = 30_000
 
     /// Cap for the dedicated `.env*` pass. These config files are routinely
-    /// gitignored, so a second `fd` run with `--no-ignore` surfaces them. The
-    /// glob keeps the match set tiny; the cap is a defensive upper bound.
+    /// gitignored, so a second `rg --files` run with `--no-ignore` surfaces them.
+    /// The glob keeps the match set tiny; the cap is a defensive upper bound.
     static let maxEnvEntries = 256
-
-    private struct FdExecutable {
-        let url: URL
-    }
 
     private struct Request: Equatable {
         let rootPath: String
@@ -114,11 +110,11 @@ final class CommandPaletteFileIndexer: ObservableObject {
         cancel(reason: .cancelled)
         activeRequest = request
 
-        guard let fd = Self.fdExecutable() else {
+        guard let rg = RipgrepExecutableResolver.resolve() else {
             currentSnapshot = CommandPaletteFileIndexSnapshot(
                 rootPath: trimmed,
                 entries: [],
-                status: .failed(reason: .fdNotInstalled),
+                status: .failed(reason: .rgNotInstalled),
                 truncated: false,
                 generation: advanceGeneration()
             )
@@ -133,7 +129,7 @@ final class CommandPaletteFileIndexer: ObservableObject {
             truncated: false,
             generation: buildGeneration
         )
-        spawn(fd: fd, rootPath: trimmed, generation: buildGeneration)
+        spawn(rg: rg, rootPath: trimmed, generation: buildGeneration)
     }
 
     /// Drop any in-flight work and reset state. Safe to call from any path.
@@ -158,39 +154,36 @@ final class CommandPaletteFileIndexer: ObservableObject {
         _ = reason
     }
 
-    private func spawn(fd: FdExecutable, rootPath: String, generation buildGeneration: UInt64) {
-        // Main pass: every file, honoring `.gitignore`. `--print0` separates results
-        // with NUL so paths with newlines are safe. `--hidden` includes dotfiles but
-        // `--exclude .git` skips the VCS metadata directory, which is rarely useful in
-        // a file picker and is huge.
+    private func spawn(rg: FileSearchRipgrepExecutable, rootPath: String, generation buildGeneration: UInt64) {
+        // Main pass: every file, honoring `.gitignore`. `--null` separates results
+        // with NUL so paths with newlines are safe. `--hidden` includes dotfiles;
+        // `rg` skips the `.git` directory by default, and `-g '!.git'` makes that
+        // explicit. `rg --files` lists files using the same ignore-aware walker as
+        // content search, so quick open and global search share one binary.
         let mainProcess = Process()
-        mainProcess.executableURL = fd.url
-        mainProcess.arguments = [
-            "--type", "f",
-            "--color", "never",
+        mainProcess.executableURL = rg.url
+        mainProcess.arguments = rg.prefixArguments + [
+            "--files",
             "--hidden",
-            "--exclude", ".git",
-            "--print0",
-            ".",
+            "--null",
+            "--glob", "!.git",
             rootPath,
         ]
         // `.env` pass: `.env*` config files (`.env`, `.env.local`, `.env.production`,
         // …) are routinely gitignored, but users still want to open them from the
-        // palette. `--no-ignore` defeats `.gitignore`; the `--glob '.env*'` pattern
-        // keeps the match set tiny so it cannot flood the corpus. `node_modules` is
-        // excluded since stray `.env` files vendored by packages are noise.
+        // palette. `--no-ignore` defeats `.gitignore`; the `-g '.env*'` pattern keeps
+        // the match set tiny so it cannot flood the corpus. `node_modules` and `.git`
+        // are excluded since stray `.env` files vendored there are noise.
         let envProcess = Process()
-        envProcess.executableURL = fd.url
-        envProcess.arguments = [
-            "--type", "f",
-            "--color", "never",
+        envProcess.executableURL = rg.url
+        envProcess.arguments = rg.prefixArguments + [
+            "--files",
             "--hidden",
             "--no-ignore",
-            "--exclude", ".git",
-            "--exclude", "node_modules",
-            "--glob",
-            "--print0",
-            ".env*",
+            "--null",
+            "--glob", ".env*",
+            "--glob", "!**/node_modules/**",
+            "--glob", "!**/.git/**",
             rootPath,
         ]
 
@@ -211,7 +204,7 @@ final class CommandPaletteFileIndexer: ObservableObject {
             currentSnapshot = CommandPaletteFileIndexSnapshot(
                 rootPath: rootPath,
                 entries: [],
-                status: .failed(reason: .fdFailed(exitCode: -1)),
+                status: .failed(reason: .rgFailed(exitCode: -1)),
                 truncated: false,
                 generation: buildGeneration
             )
@@ -240,7 +233,9 @@ final class CommandPaletteFileIndexer: ObservableObject {
             mainProcess.waitUntilExit()
             envProcess.waitUntilExit()
             // Only the main pass gates index health; a failed `.env` pass just means
-            // no extra entries, not a broken file search.
+            // no extra entries, not a broken file search. `rg` exits 1 when it lists
+            // zero files (e.g. an empty workspace) — that is not an error, so only
+            // exit codes >= 2 (genuine `rg` failures) mark the index as failed.
             let exitCode = mainProcess.terminationStatus
             let merged = Self.merge(
                 main: mainResult.entries,
@@ -256,8 +251,8 @@ final class CommandPaletteFileIndexer: ObservableObject {
                 let status: CommandPaletteFileIndexSnapshot.Status
                 if Task.isCancelled {
                     status = .failed(reason: .cancelled)
-                } else if exitCode != 0 {
-                    status = .failed(reason: .fdFailed(exitCode: exitCode))
+                } else if exitCode >= 2 {
+                    status = .failed(reason: .rgFailed(exitCode: exitCode))
                 } else {
                     status = .ready
                 }
@@ -306,7 +301,7 @@ final class CommandPaletteFileIndexer: ObservableObject {
         rootPath: String,
         maxEntries: Int
     ) async -> (entries: [CommandPaletteFileIndexSnapshot.Entry], truncated: Bool) {
-        // Drain stderr to /dev/null so a large stream doesn't block fd's exit.
+        // Drain stderr to /dev/null so a large stream doesn't block rg's exit.
         let drainTask = Task.detached(priority: .utility) {
             while true {
                 let data = errorHandle.availableData
@@ -357,22 +352,5 @@ final class CommandPaletteFileIndexer: ObservableObject {
         }
 
         return (entries, truncated)
-    }
-
-    private static func fdExecutable() -> FdExecutable? {
-        let fileManager = FileManager.default
-        for path in ["/opt/homebrew/bin/fd", "/usr/local/bin/fd", "/usr/bin/fd"]
-            where fileManager.isExecutableFile(atPath: path)
-        {
-            return FdExecutable(url: URL(fileURLWithPath: path))
-        }
-        let pathValue = ProcessInfo.processInfo.environment["PATH"] ?? ""
-        for directory in pathValue.split(separator: ":", omittingEmptySubsequences: true) {
-            let path = URL(fileURLWithPath: String(directory)).appendingPathComponent("fd").path
-            if fileManager.isExecutableFile(atPath: path) {
-                return FdExecutable(url: URL(fileURLWithPath: path))
-            }
-        }
-        return nil
     }
 }
