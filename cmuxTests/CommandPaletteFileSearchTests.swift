@@ -61,7 +61,9 @@ final class CommandPaletteFileSearchTests: XCTestCase {
     // cmux.json path that was missing from supportedSettingsJSONPaths, so opening
     // Settings tripped the validate() precondition and crashed the app.
     func testFileSearchModeSettingsRowConfigurationReviewDoesNotTrap() {
-        SettingsConfigurationReview.json("app.commandPaletteFileSearchMode").validate()
+        XCTAssertTrue(
+            CmuxSettingsFileStore.supportedSettingsJSONPaths.contains("app.commandPaletteFileSearchMode")
+        )
     }
 
     // MARK: - commandPaletteFileRankerCandidates
