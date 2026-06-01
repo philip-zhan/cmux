@@ -24,6 +24,9 @@ xcuserdata/
 GhosttyKit.xcframework
 GhosttyKit.xcframework.bak-*/
 
+# Bundled ripgrep (fetched by scripts/vendor-rg.sh; not committed)
+Resources/bin/rg
+
 # Release artifacts
 cmux-*.zip
 cmux-macos.dmg

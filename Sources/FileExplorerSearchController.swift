@@ -101,11 +101,20 @@ enum RipgrepExecutableResolution: Equatable, Sendable {
 }
 
 enum RipgrepExecutableResolver {
+    /// Path to the universal `rg` binary bundled inside the app at
+    /// `Contents/Resources/bin/rg` (fetched by `scripts/vendor-rg.sh`). Used as a
+    /// last-resort fallback so global search and quick open work out of the box,
+    /// even when the user has not installed `rg` themselves.
+    static var defaultBundledPath: String? {
+        Bundle.main.resourceURL?.appendingPathComponent("bin/rg").path
+    }
+
     static func resolve(
         configuredPath: String? = RipgrepIntegrationSettings.rawCustomRipgrepPath(),
         environment: [String: String] = ProcessInfo.processInfo.environment,
         userName: String = NSUserName(),
         homeDirectory: String = NSHomeDirectory(),
+        bundledPath: String? = RipgrepExecutableResolver.defaultBundledPath,
         isExecutable: (String) -> Bool = { FileManager.default.isExecutableFile(atPath: $0) }
     ) -> FileSearchRipgrepExecutable? {
         guard case .found(let executable) = resolution(
@@ -113,6 +122,7 @@ enum RipgrepExecutableResolver {
             environment: environment,
             userName: userName,
             homeDirectory: homeDirectory,
+            bundledPath: bundledPath,
             isExecutable: isExecutable
         ) else {
             return nil
@@ -125,6 +135,7 @@ enum RipgrepExecutableResolver {
         environment: [String: String] = ProcessInfo.processInfo.environment,
         userName: String = NSUserName(),
         homeDirectory: String = NSHomeDirectory(),
+        bundledPath: String? = RipgrepExecutableResolver.defaultBundledPath,
         isExecutable: (String) -> Bool = { FileManager.default.isExecutableFile(atPath: $0) }
     ) -> RipgrepExecutableResolution {
         if let configuredPath = RipgrepIntegrationSettings.normalizedCustomPath(
@@ -147,6 +158,13 @@ enum RipgrepExecutableResolver {
             if isExecutable(path) {
                 return .found(FileSearchRipgrepExecutable(url: URL(fileURLWithPath: path), prefixArguments: []))
             }
+        }
+
+        // Last resort: the universal `rg` bundled with the app. A user-installed
+        // `rg` (configured path or PATH) always wins so existing setups and custom
+        // flags are preserved; this only kicks in when nothing else is found.
+        if let bundledPath, isExecutable(bundledPath) {
+            return .found(FileSearchRipgrepExecutable(url: URL(fileURLWithPath: bundledPath), prefixArguments: []))
         }
         return .notFound
     }

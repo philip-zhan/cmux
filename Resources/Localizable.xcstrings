@@ -169243,8 +169243,8 @@
       }
     },
     "commandPalette.kind.file" : {"extractionState":"manual","localizations":{"en":{"stringUnit":{"state":"translated","value":"File"}},"ja":{"stringUnit":{"state":"translated","value":"ファイル"}}}},
-    "commandPalette.files.fdMissing.body" : {"extractionState":"manual","localizations":{"en":{"stringUnit":{"state":"translated","value":"Install with: brew install fd"}},"ja":{"stringUnit":{"state":"translated","value":"インストール: brew install fd"}}}},
-    "commandPalette.files.fdMissing.title" : {"extractionState":"manual","localizations":{"en":{"stringUnit":{"state":"translated","value":"fd is required for file search"}},"ja":{"stringUnit":{"state":"translated","value":"ファイル検索には fd が必要です"}}}},
+    "commandPalette.files.rgMissing.body" : {"extractionState":"manual","localizations":{"en":{"stringUnit":{"state":"translated","value":"Set a custom ripgrep path in Settings → Integrations."}},"ja":{"stringUnit":{"state":"translated","value":"設定 → 連携 で ripgrep のパスを指定してください。"}}}},
+    "commandPalette.files.rgMissing.title" : {"extractionState":"manual","localizations":{"en":{"stringUnit":{"state":"translated","value":"Couldn't run ripgrep (rg)"}},"ja":{"stringUnit":{"state":"translated","value":"ripgrep (rg) を実行できませんでした"}}}},
     "commandPalette.search.filesEmpty" : {"extractionState":"manual","localizations":{"en":{"stringUnit":{"state":"translated","value":"Start typing to search files in this workspace."}},"ja":{"stringUnit":{"state":"translated","value":"このワークスペース内のファイルを検索するには入力してください。"}}}},
     "commandPalette.search.filesPlaceholder" : {"extractionState":"manual","localizations":{"en":{"stringUnit":{"state":"translated","value":"Search files by name"}},"ja":{"stringUnit":{"state":"translated","value":"ファイル名で検索"}}}},
     "settings.app.commandPaletteFileSearchVSCodeParity" : {"extractionState":"manual","localizations":{"en":{"stringUnit":{"state":"translated","value":"Command Palette ⌘P Searches Files (VS Code Style)"}},"ja":{"stringUnit":{"state":"translated","value":"コマンドパレット ⌘P でファイルを検索（VS Code スタイル）"}}}},

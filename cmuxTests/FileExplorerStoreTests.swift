@@ -876,6 +876,52 @@ final class FileSearchControllerTests: XCTestCase {
         ))
     }
 
+    func testRipgrepResolverFallsBackToBundledBinaryWhenNothingElseFound() {
+        let bundledPath = "/Applications/cmux.app/Contents/Resources/bin/rg"
+
+        let executable = RipgrepExecutableResolver.resolve(
+            configuredPath: nil,
+            environment: ["PATH": "/tmp/bin"],
+            userName: "someone",
+            homeDirectory: "/Users/someone",
+            bundledPath: bundledPath,
+            isExecutable: { $0 == bundledPath }
+        )
+
+        XCTAssertEqual(executable?.url.path, bundledPath)
+    }
+
+    func testRipgrepResolverPrefersPATHBinaryOverBundled() {
+        let bundledPath = "/Applications/cmux.app/Contents/Resources/bin/rg"
+        let pathBinary = "/tmp/bin/rg"
+
+        let executable = RipgrepExecutableResolver.resolve(
+            configuredPath: nil,
+            environment: ["PATH": "/tmp/bin"],
+            userName: "someone",
+            homeDirectory: "/Users/someone",
+            bundledPath: bundledPath,
+            isExecutable: { $0 == pathBinary || $0 == bundledPath }
+        )
+
+        XCTAssertEqual(executable?.url.path, pathBinary)
+    }
+
+    func testRipgrepResolverReturnsNotFoundWhenBundledBinaryMissing() {
+        let bundledPath = "/Applications/cmux.app/Contents/Resources/bin/rg"
+
+        let resolution = RipgrepExecutableResolver.resolution(
+            configuredPath: nil,
+            environment: ["PATH": "/tmp/bin"],
+            userName: "someone",
+            homeDirectory: "/Users/someone",
+            bundledPath: bundledPath,
+            isExecutable: { _ in false }
+        )
+
+        XCTAssertEqual(resolution, .notFound)
+    }
+
     func testConfiguredRipgrepPathErrorMessageSubstitutesPath() {
         let configuredPath = "/nix/store/missing-ripgrep/bin/rg"
 

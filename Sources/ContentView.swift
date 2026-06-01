@@ -5175,7 +5175,7 @@ struct ContentView: View {
     }
 
     /// Builds ranker candidates from the indexer snapshot. Cheap because the lowercased
-    /// forms were precomputed off-main while reading fd.
+    /// forms were precomputed off-main while reading rg.
     ///
     /// When the query is empty, the candidate set is scoped to entries that appear in
     /// the workspace's recents list (sorted by recency). This both matches the
@@ -5862,7 +5862,7 @@ struct ContentView: View {
     }
 
     /// Asks `CommandPaletteFileIndexer` to (re)index the focused workspace's root if
-    /// the `.files` scope is active. No-ops in any other scope so we don't spawn `fd`
+    /// the `.files` scope is active. No-ops in any other scope so we don't spawn `rg`
     /// for users who never engage file search.
     ///
     /// The first `.files`-scope request after the palette opens forces a rebuild so

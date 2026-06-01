@@ -18,6 +18,9 @@ fi
 
 "$SCRIPT_DIR/ensure-ghosttykit.sh"
 
+echo "==> Vendoring ripgrep (rg) for global search + quick open..."
+"$SCRIPT_DIR/vendor-rg.sh"
+
 "$SCRIPT_DIR/install-git-hooks.sh"
 
 echo "==> Setup complete!"
