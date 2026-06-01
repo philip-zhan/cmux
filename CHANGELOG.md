@@ -2,6 +2,35 @@
 
 All notable changes to cmux are documented here.
 
+## [1.64.19] - 2026-06-01
+
+### Added
+- Workspace groups: select sidebar workspaces and press ⌘⇧G to group them under a collapsible header with an anchor workspace, drag-to-group, in-group reorder, per-group color and icon, unread badges, and a Delete Group action; plus a `cmux workspace-group` CLI namespace
+- Detachable SSH PTY daemon keeps remote sessions alive across reconnects so SSH workspaces survive a dropped connection
+- Native Kiro CLI hook integration with notifications, task manager attribution, and session restore
+- Xcode-style project visualizer pane
+- "Send Ctrl-F to Terminal" passthrough action to force-stop Claude Code agents
+- Configurable sidebar workspace font size, plus a workspace tab bar font size control
+- Browser tab audio mute toggle in the tab right-click menu, kept in sync with playback
+- Configurable Fork Conversation destinations in the tab right-click menu
+- Default terminal registration so the system terminal preference can resolve to cmux
+- Terminal textbox input with beta TextBox defaults settings
+- Beta Features toggle that gates the in-progress extension sidebar UI
+
+### Changed
+- Settings is now a top-level peer window instead of a floating child window
+- Richer agent notifications driven by Hermes hook payloads
+
+### Fixed
+- Fix File Preview hang when drag-selecting large files
+- Stop stale closed-browser snapshots from reappearing in unrelated workspaces
+- Fix zsh hook errors when the job table is saturated and bash job notification spam
+- Fix split zoom not clearing when the maximized tab is closed
+- Fix spurious "Terminal needs approval" prompts and session-restore handling in the Hermes hook
+
+### Removed
+- Remove History and the terminal scrollbar menu from the right sidebar
+
 ## [1.64.18] - 2026-05-30
 
 ### Added
