@@ -623,6 +623,28 @@ function blameExtension(): Extension {
   return [blameDataField, blameDecorationField, blameTheme];
 }
 
+// VS Code-style diff highlighting. The `@codemirror/merge` base theme marks
+// changed tokens with a 2px underline gradient (`.cm-changedText`); we replace
+// that with a solid, full-height token highlight and bump the full-width line
+// backgrounds so a change reads as a filled block rather than an underline.
+const diffHighlightTheme = EditorView.theme({
+  // Changed/removed tokens (original side + inline deletions): full-height red.
+  "&.cm-merge-a .cm-changedText, & .cm-deletedChunk .cm-deletedText": {
+    background: "rgba(248, 81, 73, 0.4)",
+  },
+  // Changed/added tokens (modified side): full-height green.
+  "&.cm-merge-b .cm-changedText": {
+    background: "rgba(63, 185, 80, 0.4)",
+  },
+  // Full-width line backgrounds, a touch stronger than the merge default.
+  "&.cm-merge-a .cm-changedLine, & .cm-deletedChunk": {
+    backgroundColor: "rgba(248, 81, 73, 0.15)",
+  },
+  "&.cm-merge-b .cm-changedLine": {
+    backgroundColor: "rgba(63, 185, 80, 0.15)",
+  },
+});
+
 function baseExtensions(): Extension[] {
   return [
     lineNumbers(),
@@ -650,7 +672,79 @@ let editor: EditorView | null = null;
 let mergeView: MergeView | null = null;
 let lastBlame: BlameLine[] | null = null;
 
+// Overview ruler: a thin strip pinned to the right edge that maps every diff
+// chunk to its vertical position in the document (VS Code-style), so changes
+// are locatable without scrolling. Pinned to `#editor` (which doesn't scroll)
+// rather than `.cm-mergeView` (which does), and positioned by pixel offset so
+// deleted-chunk widgets are accounted for.
+let diffRulerEl: HTMLDivElement | null = null;
+let rulerRaf: number | null = null;
+// Signature of the last-mounted diff content. Auto-scroll-to-first-change fires
+// only when this changes, so re-mounts driven by theme/font/read-only toggles
+// don't yank the viewport back to the top.
+let lastDiffSig: string | null = null;
+
+function diffSignature(a: string, b: string): string {
+  return `${a.length}:${b.length}:${a.slice(0, 96)}:${b.slice(0, 96)}:${a.slice(-96)}:${b.slice(-96)}`;
+}
+
+function scheduleRulerBuild() {
+  if (rulerRaf != null) return;
+  rulerRaf = requestAnimationFrame(() => {
+    rulerRaf = null;
+    buildDiffRuler();
+  });
+}
+
+function buildDiffRuler() {
+  if (!mergeView || !diffRulerEl) return;
+  const view = mergeView.b;
+  if (!view.dom.isConnected) return;
+  const total = view.contentHeight;
+  if (!(total > 0)) return;
+  const doc = view.state.doc;
+  const frag = document.createDocumentFragment();
+  for (const chunk of mergeView.chunks) {
+    const startBlock = view.lineBlockAt(Math.min(chunk.fromB, doc.length));
+    const isDeletion = chunk.toB <= chunk.fromB;
+    let topPx = startBlock.top;
+    let heightPx = startBlock.height;
+    if (!isDeletion) {
+      const endBlock = view.lineBlockAt(
+        Math.min(Math.max(chunk.toB - 1, chunk.fromB), doc.length)
+      );
+      heightPx = endBlock.top + endBlock.height - topPx;
+    }
+    const mark = document.createElement("div");
+    mark.className = `cmux-diff-ruler-mark cmux-diff-ruler-${isDeletion ? "del" : "add"}`;
+    mark.style.top = `${(topPx / total) * 100}%`;
+    mark.style.height = `${(Math.max(heightPx, 0) / total) * 100}%`;
+    frag.appendChild(mark);
+  }
+  diffRulerEl.replaceChildren(frag);
+}
+
+function scrollToFirstChunk() {
+  if (!mergeView || mergeView.chunks.length === 0) return;
+  const view = mergeView.b;
+  const pos = Math.min(mergeView.chunks[0].fromB, view.state.doc.length);
+  const top = view.lineBlockAt(pos).top;
+  // Leave a few lines of context above the first change instead of pinning it
+  // to the very top edge.
+  const margin = Math.max(view.defaultLineHeight * 3, 36);
+  // `.cm-mergeView` is the merge view's scroll container.
+  mergeView.dom.scrollTop = Math.max(top - margin, 0);
+}
+
 function teardown() {
+  if (rulerRaf != null) {
+    cancelAnimationFrame(rulerRaf);
+    rulerRaf = null;
+  }
+  if (diffRulerEl) {
+    diffRulerEl.remove();
+    diffRulerEl = null;
+  }
   if (mergeView) {
     mergeView.destroy();
     mergeView = null;
@@ -663,6 +757,9 @@ function teardown() {
 
 function mountSingle(parent: HTMLElement, content: string) {
   teardown();
+  // Re-entering diff mode after viewing a single file should always re-reveal
+  // the first change, even if the diff content is byte-identical to last time.
+  lastDiffSig = null;
   editor = new EditorView({
     parent,
     state: EditorState.create({
@@ -679,14 +776,35 @@ function mountSingle(parent: HTMLElement, content: string) {
 
 function mountDiff(parent: HTMLElement, original: string, modified: string) {
   teardown();
+  // Rebuild the overview ruler whenever the modified side's content or layout
+  // changes (edits, font-size, resize) so the marks stay aligned.
+  const rulerSync = EditorView.updateListener.of((u) => {
+    if (u.docChanged || u.geometryChanged || u.viewportChanged) {
+      scheduleRulerBuild();
+    }
+  });
   mergeView = new MergeView({
     parent,
-    a: { doc: original, extensions: baseExtensions() },
-    b: { doc: modified, extensions: baseExtensions() },
+    a: { doc: original, extensions: [...baseExtensions(), diffHighlightTheme] },
+    b: { doc: modified, extensions: [...baseExtensions(), diffHighlightTheme, rulerSync] },
     revertControls: "b-to-a",
     highlightChanges: true,
     gutter: true,
     diffConfig: { scanLimit: 1000 },
+  });
+
+  diffRulerEl = document.createElement("div");
+  diffRulerEl.className = "cmux-diff-ruler";
+  parent.appendChild(diffRulerEl);
+
+  const sig = diffSignature(original, modified);
+  const contentChanged = sig !== lastDiffSig;
+  lastDiffSig = sig;
+
+  // Defer until the merge view has laid out so pixel offsets are available.
+  requestAnimationFrame(() => {
+    buildDiffRuler();
+    if (contentChanged) scrollToFirstChunk();
   });
 }
 

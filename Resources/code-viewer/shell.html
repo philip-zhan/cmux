@@ -25,6 +25,35 @@
   .cm-scroller {
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   }
+  /* Make the merge view itself the scroll container (the inner panes are
+     forced to height:auto by @codemirror/merge) so the overview ruler can pin
+     to the non-scrolling #editor frame. */
+  .cm-mergeView {
+    height: 100%;
+    box-sizing: border-box;
+  }
+  /* Diff overview ruler: a thin strip of colored marks on the right edge that
+     maps every change to its position in the file. Marks are positioned by the
+     JS; pointer-events:none lets the scrollbar beneath stay usable. */
+  .cmux-diff-ruler {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 12px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 6;
+  }
+  .cmux-diff-ruler-mark {
+    position: absolute;
+    right: 2px;
+    width: 6px;
+    min-height: 3px;
+    border-radius: 1px;
+    opacity: 0.85;
+  }
+  .cmux-diff-ruler-add { background: #3fb950; }
+  .cmux-diff-ruler-del { background: #f85149; }
 </style>
 </head>
 <body>
