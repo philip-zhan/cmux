@@ -2,6 +2,12 @@
 
 All notable changes to cmux are documented here.
 
+## [1.64.20] - 2026-06-01
+
+### Changed
+- Global search and Quick Open now work out of the box — a ripgrep binary ships with the app, so no separate `ripgrep`/`fd` install is required (a user-configured ripgrep path is still preferred when set)
+- Diff view restyled to match VS Code
+
 ## [1.64.19] - 2026-06-01
 
 ### Added
