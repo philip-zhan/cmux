@@ -474,6 +474,7 @@
 		5C0DE00100000000000A0007 /* SourceControlGitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0DE00100000000000A0008 /* SourceControlGitTests.swift */; };
 		5C0DE00100000000000A0003 /* SourceControlPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0DE00100000000000A0004 /* SourceControlPanelView.swift */; };
 		5C0DE00100000000000A0001 /* SourceControlStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0DE00100000000000A0002 /* SourceControlStore.swift */; };
+		5C0DE00100000000000A0009 /* RecursiveFileSystemWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0DE00100000000000A000A /* RecursiveFileSystemWatcher.swift */; };
 		A5001230 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = A5001231 /* Sparkle */; };
 		E3309A0D /* SplitEqualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3309A0E /* SplitEqualizer.swift */; };
 		F6355600A1B2C3D4E5F60718 /* SSHStartupSignalLifecycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6355601A1B2C3D4E5F60718 /* SSHStartupSignalLifecycleTests.swift */; };
@@ -1117,6 +1118,7 @@
 		5C0DE00100000000000A0008 /* SourceControlGitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlGitTests.swift; sourceTree = "<group>"; };
 		5C0DE00100000000000A0004 /* SourceControlPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlPanelView.swift; sourceTree = "<group>"; };
 		5C0DE00100000000000A0002 /* SourceControlStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlStore.swift; sourceTree = "<group>"; };
+		5C0DE00100000000000A000A /* RecursiveFileSystemWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecursiveFileSystemWatcher.swift; sourceTree = "<group>"; };
 		E3309A0E /* SplitEqualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitEqualizer.swift; sourceTree = "<group>"; };
 		F6355601A1B2C3D4E5F60718 /* SSHStartupSignalLifecycleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHStartupSignalLifecycleTests.swift; sourceTree = "<group>"; };
 		D35B71010000000000000002 /* StartupBreadcrumbLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/StartupBreadcrumbLog.swift; sourceTree = "<group>"; };
@@ -1680,6 +1682,7 @@
 				C0DEC0DEC0DEC0DEC0DE0010 /* CodePreviewEngineSettings.swift */,
 				C0DEC0DEC0DEC0DEC0DE0018 /* FilePreviewCodeEditor.swift */,
 				5C0DE00100000000000A0002 /* SourceControlStore.swift */,
+				5C0DE00100000000000A000A /* RecursiveFileSystemWatcher.swift */,
 				5C0DE00100000000000A0004 /* SourceControlPanelView.swift */,
 				5C0DE00100000000000A0006 /* FilePreviewDiffEditor.swift */,
 				A5001451A5001451A5001451 /* FilePreviewNativeBackground.swift */,
@@ -2539,6 +2542,7 @@
 				A5001226 /* SocketControlMode+Display.swift in Sources */,
 				5C0DE00100000000000A0003 /* SourceControlPanelView.swift in Sources */,
 				5C0DE00100000000000A0001 /* SourceControlStore.swift in Sources */,
+				5C0DE00100000000000A0009 /* RecursiveFileSystemWatcher.swift in Sources */,
 					E3309A0D /* SplitEqualizer.swift in Sources */,
 				D35B71010000000000000001 /* StartupBreadcrumbLog.swift in Sources */,
 				A5001303 /* SurfaceSearchOverlay.swift in Sources */,
