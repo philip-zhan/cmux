@@ -9,6 +9,9 @@ xcuserdata/
 # macOS
 .DS_Store
 
+# Claude Code local harness artifacts
+.claude/scheduled_tasks.lock
+
 # Local env
 .env
 .envrc
