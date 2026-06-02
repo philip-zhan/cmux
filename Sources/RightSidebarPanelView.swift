@@ -184,6 +184,8 @@ struct RightSidebarPanelView: View {
     private let closeShortcutHintYOffset = ShortcutHintDebugSettings.defaultRightSidebarCloseHintY
     private let focusShortcutHintXOffset = ShortcutHintDebugSettings.defaultRightSidebarFocusHintX
     private let focusShortcutHintYOffset = ShortcutHintDebugSettings.defaultRightSidebarFocusHintY
+    @AppStorage(RightSidebarBetaFeatureSettings.feedEnabledKey)
+    private var feedEnabled = RightSidebarBetaFeatureSettings.defaultFeedEnabled
     @AppStorage(RightSidebarBetaFeatureSettings.dockEnabledKey)
     private var dockEnabled = RightSidebarBetaFeatureSettings.defaultDockEnabled
     @AppStorage(RightSidebarTabVisibilitySettings.filesVisibleKey)
@@ -208,7 +210,7 @@ struct RightSidebarPanelView: View {
         // Touch the visibility AppStorage keys so SwiftUI tracks them and
         // refreshes the mode bar when tabs are shown/hidden in Settings.
         _ = [filesTabVisible, findTabVisible, sourceControlTabVisible, sessionsTabVisible, feedTabVisible]
-        return RightSidebarMode.availableModes(dockEnabled: dockEnabled)
+        return RightSidebarMode.availableModes(feedEnabled: feedEnabled, dockEnabled: dockEnabled)
     }
 
     var body: some View {
@@ -248,6 +250,7 @@ struct RightSidebarPanelView: View {
             if mode != .dock { dockStore.deactivate() }
         }
         .onChange(of: fileExplorerState.isVisible) { _, visible in if !visible { dockStore.deactivate() } }
+        .onChange(of: feedEnabled) { _, _ in refreshModeAvailabilityAndFocusIfNeeded() }
         .onChange(of: dockEnabled) { _, _ in refreshModeAvailabilityAndFocusIfNeeded() }
         .onChange(of: availableModes) { _, _ in refreshModeAvailabilityAndFocusIfNeeded() }
     }

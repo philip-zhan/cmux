@@ -22,32 +22,42 @@ extension RightSidebarMode {
 
     static func availableModes(defaults: UserDefaults = .standard) -> [RightSidebarMode] {
         availableModes(
+            feedEnabled: RightSidebarBetaFeatureSettings.isFeedEnabled(defaults: defaults),
             dockEnabled: RightSidebarBetaFeatureSettings.isDockEnabled(defaults: defaults),
             defaults: defaults
         )
     }
 
-    static func availableModes(dockEnabled: Bool, defaults: UserDefaults = .standard) -> [RightSidebarMode] {
-        allCases.filter { $0.isAvailable(dockEnabled: dockEnabled, defaults: defaults) }
+    static func availableModes(
+        feedEnabled: Bool,
+        dockEnabled: Bool,
+        defaults: UserDefaults = .standard
+    ) -> [RightSidebarMode] {
+        allCases.filter {
+            $0.isAvailable(feedEnabled: feedEnabled, dockEnabled: dockEnabled, defaults: defaults)
+        }
     }
 
     func isAvailable(defaults: UserDefaults = .standard) -> Bool {
         isAvailable(
+            feedEnabled: RightSidebarBetaFeatureSettings.isFeedEnabled(defaults: defaults),
             dockEnabled: RightSidebarBetaFeatureSettings.isDockEnabled(defaults: defaults),
             defaults: defaults
         )
     }
 
-    func isAvailable(dockEnabled: Bool, defaults: UserDefaults = .standard) -> Bool {
-        guard isEnabledByBetaGate(dockEnabled: dockEnabled) else { return false }
+    func isAvailable(feedEnabled: Bool, dockEnabled: Bool, defaults: UserDefaults = .standard) -> Bool {
+        guard isEnabledByBetaGate(feedEnabled: feedEnabled, dockEnabled: dockEnabled) else { return false }
         return RightSidebarTabVisibilitySettings.isVisible(self, defaults: defaults)
     }
 
     /// Whether the tab is unlocked by beta flags, ignoring user visibility.
-    private func isEnabledByBetaGate(dockEnabled: Bool) -> Bool {
+    private func isEnabledByBetaGate(feedEnabled: Bool, dockEnabled: Bool) -> Bool {
         switch self {
-        case .files, .find, .sourceControl, .sessions, .feed:
+        case .files, .find, .sourceControl, .sessions:
             return true
+        case .feed:
+            return feedEnabled
         case .dock:
             return dockEnabled
         }
