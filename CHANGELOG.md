@@ -2,6 +2,34 @@
 
 All notable changes to cmux are documented here.
 
+## [1.64.21] - 2026-06-02
+
+### Added
+- Configurable keyboard shortcut to open the diff viewer, editable in Settings
+- Font size and zoom controls in the Markdown viewer
+- Browser mouse back and forward button support
+- Browser focus mode
+
+### Changed
+- Gate the Feed behind Beta Features (mirroring Dock), off by default
+- Rank visible title matches above hidden metadata in the workspace switcher
+- Build the release app with the macOS 26 SDK
+
+### Fixed
+- Fix Starship and other custom bash prompts going static by composing the prompt bootstrap with your existing `PROMPT_COMMAND`
+- Report remote PTY allocation failures loudly so `cmux ssh` no longer fails silently
+- Fix a main-thread hang from focus-surface broadcast re-entrancy triggered by custom shortcuts
+- Restore the right-click sidebar view switcher and built-in views (Default Workspaces, Project Worktrees, and others)
+- Strip terminal-color OSC sequences from restored scrollback so old sessions no longer keep a previous theme's colors
+- Fix the browser Web Inspector reopening by itself after manual close and navigation
+- Honor the Settings rebinding of Global Search by parsing package object-form `cmux.json` shortcut bindings
+- Fix Claude fork and resume failing when the session had changed directories
+- Fix titlebar shortcut-hint pills clipped at the bottom on macOS 26.5
+- Fall back to the default sidebar when extensions are disabled
+- Stabilize the git metadata FSEvents watcher to stop an event storm
+- Avoid E2BIG when the SSH startup script exceeds `MAX_ARG_STRLEN`
+- Watch the repository recursively so Source Control refreshes on changes in nested directories
+
 ## [1.64.20] - 2026-06-01
 
 ### Changed
