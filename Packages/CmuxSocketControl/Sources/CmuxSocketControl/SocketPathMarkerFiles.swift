@@ -1,7 +1,7 @@
 public import Foundation
 
 public enum SocketPathMarkerFiles {
-    public static let stableAppSupportFileName = "last-socket-path"
+    public static let stableMarkerFileName = "last-socket-path"
     public static let stableTmpPath = "/tmp/cmux-last-socket-path"
     public static let nightlyBundleIdentifier = "com.cmuxterm.app.nightly"
     public static let stagingBundleIdentifier = "com.cmuxterm.app.staging"
@@ -12,17 +12,17 @@ public enum SocketPathMarkerFiles {
     public static let cmux2BundleIdentifier = "com.cmuxterm.cmux2"
     public static let defaultCmux2SocketPath = "/tmp/cmux2.sock"
 
-    public static func appSupportFileURL(
-        fileName: String = stableAppSupportFileName,
-        appSupportDirectory: URL?
+    public static func markerFileURL(
+        fileName: String = stableMarkerFileName,
+        directory: URL?
     ) -> URL? {
-        appSupportDirectory?.appendingPathComponent(fileName, isDirectory: false)
+        directory?.appendingPathComponent(fileName, isDirectory: false)
     }
 
     public static func paths(
         bundleIdentifier: String?,
         environment: [String: String],
-        appSupportDirectory: URL?,
+        directory: URL?,
         baseDebugBundleIdentifier: String = defaultBaseDebugBundleIdentifier
     ) -> [String] {
         let variant = variant(
@@ -31,11 +31,11 @@ public enum SocketPathMarkerFiles {
             baseDebugBundleIdentifier: baseDebugBundleIdentifier
         )
         var candidates: [String] = []
-        if let appSupportPath = appSupportFileURL(
-            fileName: variant.appSupportFileName,
-            appSupportDirectory: appSupportDirectory
+        if let directoryPath = markerFileURL(
+            fileName: variant.markerFileName,
+            directory: directory
         )?.path {
-            candidates.append(appSupportPath)
+            candidates.append(directoryPath)
         }
         candidates.append(variant.tmpPath)
         return dedupe(candidates)

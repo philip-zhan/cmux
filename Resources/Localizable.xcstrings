@@ -569,6 +569,40 @@
         }
       }
     },
+    "settings.app.fileEditorWordWrap": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File Editor Word Wrap"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ファイルエディタの行折り返し"
+          }
+        }
+      }
+    },
+    "settings.app.fileEditorWordWrap.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wrap long lines at the editor's right edge instead of scrolling horizontally. Applies to the plain-text file editor."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "長い行を横スクロールせずにエディタの右端で折り返します。プレーンテキストのファイルエディタに適用されます。"
+          }
+        }
+      }
+    },
     "settings.search.alias.setting.app.markdown-font-size": {
       "extractionState": "manual",
       "localizations": {
@@ -616,6 +650,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "markdown.maxWidth Markdown マークダウン ビューア 最大幅 幅 カラム 読み取り 行長 ピクセル px 狭い 広い"
+          }
+        }
+      }
+    },
+    "settings.search.alias.setting.app.file-editor-word-wrap": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fileEditor.wordWrap file editor word wrap soft wrap reflow lines text horizontal scroll preview"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fileEditor.wordWrap ファイル エディタ 行折り返し ワードラップ 折り返し 改行 テキスト 横スクロール プレビュー"
           }
         }
       }
@@ -1146,26 +1197,126 @@
     "remotePTYAttach.error.allocationDiagnostic": {
       "comment": "Passthrough of the remote daemon's dynamic PTY-allocation diagnostic (device paths, devpts mount options, remediation). The detail is locale-invariant technical text, so every locale is just the substitution placeholder.",
       "localizations": {
-        "en": { "stringUnit": { "state": "translated", "value": "%@" } },
-        "ja": { "stringUnit": { "state": "translated", "value": "%@" } },
-        "zh-Hans": { "stringUnit": { "state": "translated", "value": "%@" } },
-        "zh-Hant": { "stringUnit": { "state": "translated", "value": "%@" } },
-        "ko": { "stringUnit": { "state": "translated", "value": "%@" } },
-        "de": { "stringUnit": { "state": "translated", "value": "%@" } },
-        "es": { "stringUnit": { "state": "translated", "value": "%@" } },
-        "fr": { "stringUnit": { "state": "translated", "value": "%@" } },
-        "it": { "stringUnit": { "state": "translated", "value": "%@" } },
-        "da": { "stringUnit": { "state": "translated", "value": "%@" } },
-        "pl": { "stringUnit": { "state": "translated", "value": "%@" } },
-        "ru": { "stringUnit": { "state": "translated", "value": "%@" } },
-        "bs": { "stringUnit": { "state": "translated", "value": "%@" } },
-        "ar": { "stringUnit": { "state": "translated", "value": "%@" } },
-        "nb": { "stringUnit": { "state": "translated", "value": "%@" } },
-        "pt-BR": { "stringUnit": { "state": "translated", "value": "%@" } },
-        "th": { "stringUnit": { "state": "translated", "value": "%@" } },
-        "tr": { "stringUnit": { "state": "translated", "value": "%@" } },
-        "uk": { "stringUnit": { "state": "translated", "value": "%@" } },
-        "km": { "stringUnit": { "state": "translated", "value": "%@" } }
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        }
       }
     },
     "remotePTYAttach.error.attachFailed": {
@@ -11014,6 +11165,131 @@
         }
       }
     },
+    "cli.help.ssh": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux ssh <destination> [flags] [-- <remote-command-args>]\n\nأنشئ مساحة عمل جديدة، وعلّمها كـ remote-SSH، وابدأ جلسة SSH داخلها.\nسينشئ cmux أيضًا نقطة نهاية وكيل SSH محلية حتى تخرج حركة مرور المتصفح من المضيف البعيد.\n\nFlags:\n  --name <title>          عنوان اختياري لمساحة العمل\n  --port <n>              منفذ SSH\n  --identity <path>       مسار ملف هوية SSH\n  -A, --forward-agent     يمرر وكيل SSH الخاص بالمستدعي؛ ويحترم أيضًا ForwardAgent yes من ssh_config\n  -a, --no-forward-agent  يعطّل تمرير وكيل SSH لمساحة العمل هذه\n  --ssh-option <opt>      خيار SSH -o إضافي (قابل للتكرار)\n  --window <id|ref|index> النافذة الهدف لمساحة العمل المُدارة\n  --no-focus              ينشئ مساحة العمل من دون الانتقال إليها\n\nExample:\n  cmux ssh dev@my-host\n  cmux ssh dev@my-host --name \"gpu-box\" --port 2222 --identity ~/.ssh/id_ed25519\n  cmux ssh dev@my-host --forward-agent\n  cmux ssh dev@my-host --ssh-option UserKnownHostsFile=/dev/null --ssh-option StrictHostKeyChecking=no"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux ssh <destination> [flags] [-- <remote-command-args>]\n\nKreira novi workspace, označava ga kao remote-SSH i pokreće SSH sesiju u tom workspaceu.\ncmux će također uspostaviti lokalnu SSH proxy krajnju tačku kako bi promet preglednika izlazio s udaljenog hosta.\n\nFlags:\n  --name <title>          Opcionalni naslov workspacea\n  --port <n>              SSH port\n  --identity <path>       Putanja do SSH identity datoteke\n  -A, --forward-agent     Prosljeđuje SSH agent pozivaoca; poštuje i ForwardAgent yes iz ssh_config\n  -a, --no-forward-agent  Onemogućava prosljeđivanje SSH agenta za ovaj workspace\n  --ssh-option <opt>      Dodatna SSH -o opcija (može se ponavljati)\n  --window <id|ref|index> Ciljni prozor za upravljani workspace\n  --no-focus              Kreira workspace bez prelaska na njega\n\nExample:\n  cmux ssh dev@my-host\n  cmux ssh dev@my-host --name \"gpu-box\" --port 2222 --identity ~/.ssh/id_ed25519\n  cmux ssh dev@my-host --forward-agent\n  cmux ssh dev@my-host --ssh-option UserKnownHostsFile=/dev/null --ssh-option StrictHostKeyChecking=no"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux ssh <destination> [flags] [-- <remote-command-args>]\n\nOpret et nyt arbejdsområde, markér det som remote-SSH, og start en SSH-session i det arbejdsområde.\ncmux opretter også et lokalt SSH-proxyendepunkt, så browsertrafik kan gå ud fra den eksterne vært.\n\nFlags:\n  --name <title>          Valgfri titel på arbejdsområdet\n  --port <n>              SSH-port\n  --identity <path>       Sti til SSH-identitetsfil\n  -A, --forward-agent     Videresend kalderens SSH-agent; respekterer også ForwardAgent yes fra ssh_config\n  -a, --no-forward-agent  Deaktiver SSH-agentvideresendelse for dette arbejdsområde\n  --ssh-option <opt>      Ekstra SSH -o-indstilling (kan gentages)\n  --window <id|ref|index> Målvindue for det administrerede arbejdsområde\n  --no-focus              Opret arbejdsområdet uden at skifte til det\n\nExample:\n  cmux ssh dev@my-host\n  cmux ssh dev@my-host --name \"gpu-box\" --port 2222 --identity ~/.ssh/id_ed25519\n  cmux ssh dev@my-host --forward-agent\n  cmux ssh dev@my-host --ssh-option UserKnownHostsFile=/dev/null --ssh-option StrictHostKeyChecking=no"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux ssh <destination> [flags] [-- <remote-command-args>]\n\nErstellt einen neuen Workspace, markiert ihn als remote-SSH und startet darin eine SSH-Sitzung.\ncmux richtet außerdem einen lokalen SSH-Proxy-Endpunkt ein, damit Browserverkehr vom Remote-Host ausgeht.\n\nFlags:\n  --name <title>          Optionaler Workspace-Titel\n  --port <n>              SSH-Port\n  --identity <path>       Pfad zur SSH-Identitätsdatei\n  -A, --forward-agent     Leitet den SSH-Agent des Aufrufers weiter; beachtet auch ForwardAgent yes aus ssh_config\n  -a, --no-forward-agent  Deaktiviert SSH-Agent-Weiterleitung für diesen Workspace\n  --ssh-option <opt>      Zusätzliche SSH-Option -o (wiederholbar)\n  --window <id|ref|index> Zielfenster für den verwalteten Workspace\n  --no-focus              Workspace erstellen, ohne zu ihm zu wechseln\n\nExample:\n  cmux ssh dev@my-host\n  cmux ssh dev@my-host --name \"gpu-box\" --port 2222 --identity ~/.ssh/id_ed25519\n  cmux ssh dev@my-host --forward-agent\n  cmux ssh dev@my-host --ssh-option UserKnownHostsFile=/dev/null --ssh-option StrictHostKeyChecking=no"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux ssh <destination> [flags] [-- <remote-command-args>]\n\nCreate a new workspace, mark it as remote-SSH, and start an SSH session in that workspace.\ncmux will also establish a local SSH proxy endpoint so browser traffic can egress from the remote host.\n\nFlags:\n  --name <title>          Optional workspace title\n  --port <n>              SSH port\n  --identity <path>       SSH identity file path\n  -A, --forward-agent     Forward the caller's SSH agent; also honors ForwardAgent yes from ssh_config\n  -a, --no-forward-agent  Disable SSH agent forwarding for this workspace\n  --ssh-option <opt>      Extra SSH -o option (repeatable)\n  --window <id|ref|index> Target window for the managed workspace\n  --no-focus              Create workspace without switching to it\n\nExample:\n  cmux ssh dev@my-host\n  cmux ssh dev@my-host --name \"gpu-box\" --port 2222 --identity ~/.ssh/id_ed25519\n  cmux ssh dev@my-host --forward-agent\n  cmux ssh dev@my-host --ssh-option UserKnownHostsFile=/dev/null --ssh-option StrictHostKeyChecking=no"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux ssh <destination> [flags] [-- <remote-command-args>]\n\nCrea un nuevo espacio de trabajo, márcalo como remote-SSH e inicia una sesión SSH en ese espacio.\ncmux también establecerá un punto final de proxy SSH local para que el tráfico del navegador salga desde el host remoto.\n\nFlags:\n  --name <title>          Título opcional del espacio de trabajo\n  --port <n>              Puerto SSH\n  --identity <path>       Ruta del archivo de identidad SSH\n  -A, --forward-agent     Reenvía el agente SSH del proceso que llama; también respeta ForwardAgent yes de ssh_config\n  -a, --no-forward-agent  Desactiva el reenvío del agente SSH para este espacio de trabajo\n  --ssh-option <opt>      Opción SSH -o adicional (repetible)\n  --window <id|ref|index> Ventana de destino para el espacio de trabajo administrado\n  --no-focus              Crea el espacio de trabajo sin cambiar a él\n\nExample:\n  cmux ssh dev@my-host\n  cmux ssh dev@my-host --name \"gpu-box\" --port 2222 --identity ~/.ssh/id_ed25519\n  cmux ssh dev@my-host --forward-agent\n  cmux ssh dev@my-host --ssh-option UserKnownHostsFile=/dev/null --ssh-option StrictHostKeyChecking=no"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux ssh <destination> [flags] [-- <remote-command-args>]\n\nCrée un nouvel espace de travail, le marque comme remote-SSH et démarre une session SSH dans cet espace.\ncmux établira aussi un point de terminaison proxy SSH local afin que le trafic du navigateur sorte depuis l’hôte distant.\n\nFlags:\n  --name <title>          Titre facultatif de l’espace de travail\n  --port <n>              Port SSH\n  --identity <path>       Chemin du fichier d’identité SSH\n  -A, --forward-agent     Transfère l’agent SSH de l’appelant ; respecte aussi ForwardAgent yes depuis ssh_config\n  -a, --no-forward-agent  Désactive le transfert d’agent SSH pour cet espace de travail\n  --ssh-option <opt>      Option SSH -o supplémentaire (répétable)\n  --window <id|ref|index> Fenêtre cible pour l’espace de travail géré\n  --no-focus              Crée l’espace de travail sans basculer dessus\n\nExample:\n  cmux ssh dev@my-host\n  cmux ssh dev@my-host --name \"gpu-box\" --port 2222 --identity ~/.ssh/id_ed25519\n  cmux ssh dev@my-host --forward-agent\n  cmux ssh dev@my-host --ssh-option UserKnownHostsFile=/dev/null --ssh-option StrictHostKeyChecking=no"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux ssh <destination> [flags] [-- <remote-command-args>]\n\nCrea un nuovo workspace, contrassegnalo come remote-SSH e avvia una sessione SSH in quel workspace.\ncmux creerà anche un endpoint proxy SSH locale in modo che il traffico del browser esca dall'host remoto.\n\nFlags:\n  --name <title>          Titolo opzionale del workspace\n  --port <n>              Porta SSH\n  --identity <path>       Percorso del file di identità SSH\n  -A, --forward-agent     Inoltra l'agente SSH del chiamante; rispetta anche ForwardAgent yes da ssh_config\n  -a, --no-forward-agent  Disattiva l'inoltro dell'agente SSH per questo workspace\n  --ssh-option <opt>      Opzione SSH -o aggiuntiva (ripetibile)\n  --window <id|ref|index> Finestra di destinazione per il workspace gestito\n  --no-focus              Crea il workspace senza passarvi\n\nExample:\n  cmux ssh dev@my-host\n  cmux ssh dev@my-host --name \"gpu-box\" --port 2222 --identity ~/.ssh/id_ed25519\n  cmux ssh dev@my-host --forward-agent\n  cmux ssh dev@my-host --ssh-option UserKnownHostsFile=/dev/null --ssh-option StrictHostKeyChecking=no"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux ssh <destination> [flags] [-- <remote-command-args>]\n\n新しいワークスペースを作成し、remote-SSH としてマークして、そのワークスペースで SSH セッションを開始します。\ncmux はローカル SSH プロキシエンドポイントも確立するため、ブラウザトラフィックはリモートホストから送信されます。\n\nFlags:\n  --name <title>          任意のワークスペースタイトル\n  --port <n>              SSH ポート\n  --identity <path>       SSH identity ファイルパス\n  -A, --forward-agent     呼び出し元の SSH エージェントを転送します。ssh_config の ForwardAgent yes も尊重します\n  -a, --no-forward-agent  このワークスペースでは SSH エージェント転送を無効にします\n  --ssh-option <opt>      追加の SSH -o オプション（繰り返し可）\n  --window <id|ref|index> 管理対象ワークスペースのターゲットウィンドウ\n  --no-focus              ワークスペースを作成しますが切り替えません\n\nExample:\n  cmux ssh dev@my-host\n  cmux ssh dev@my-host --name \"gpu-box\" --port 2222 --identity ~/.ssh/id_ed25519\n  cmux ssh dev@my-host --forward-agent\n  cmux ssh dev@my-host --ssh-option UserKnownHostsFile=/dev/null --ssh-option StrictHostKeyChecking=no"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux ssh <destination> [flags] [-- <remote-command-args>]\n\nបង្កើត workspace ថ្មី សម្គាល់វាជា remote-SSH ហើយចាប់ផ្តើមសម័យ SSH នៅក្នុង workspace នោះ។\ncmux ក៏នឹងបង្កើតចំណុចបញ្ចប់ SSH proxy មូលដ្ឋាន ដើម្បីឱ្យចរាចរណ៍ browser ចេញពី host ពីចម្ងាយ។\n\nFlags:\n  --name <title>          ចំណងជើង workspace ស្រេចចិត្ត\n  --port <n>              ច្រក SSH\n  --identity <path>       ផ្លូវឯកសារ SSH identity\n  -A, --forward-agent     បញ្ជូនបន្ត SSH agent របស់អ្នកហៅ; ក៏គោរព ForwardAgent yes ពី ssh_config\n  -a, --no-forward-agent  បិទការបញ្ជូនបន្ត SSH agent សម្រាប់ workspace នេះ\n  --ssh-option <opt>      ជម្រើស SSH -o បន្ថែម (អាចប្រើម្តងហើយម្តងទៀត)\n  --window <id|ref|index> បង្អួចគោលដៅសម្រាប់ workspace ដែលបានគ្រប់គ្រង\n  --no-focus              បង្កើត workspace ដោយមិនប្តូរទៅវា\n\nExample:\n  cmux ssh dev@my-host\n  cmux ssh dev@my-host --name \"gpu-box\" --port 2222 --identity ~/.ssh/id_ed25519\n  cmux ssh dev@my-host --forward-agent\n  cmux ssh dev@my-host --ssh-option UserKnownHostsFile=/dev/null --ssh-option StrictHostKeyChecking=no"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux ssh <destination> [flags] [-- <remote-command-args>]\n\n새 워크스페이스를 만들고 remote-SSH로 표시한 뒤, 그 워크스페이스에서 SSH 세션을 시작합니다.\ncmux는 브라우저 트래픽이 원격 호스트에서 나가도록 로컬 SSH 프록시 엔드포인트도 설정합니다.\n\nFlags:\n  --name <title>          선택적 워크스페이스 제목\n  --port <n>              SSH 포트\n  --identity <path>       SSH identity 파일 경로\n  -A, --forward-agent     호출자의 SSH 에이전트를 전달합니다. ssh_config의 ForwardAgent yes도 존중합니다\n  -a, --no-forward-agent  이 워크스페이스에서 SSH 에이전트 전달을 비활성화합니다\n  --ssh-option <opt>      추가 SSH -o 옵션(반복 가능)\n  --window <id|ref|index> 관리되는 워크스페이스의 대상 창\n  --no-focus              워크스페이스를 만들되 전환하지 않습니다\n\nExample:\n  cmux ssh dev@my-host\n  cmux ssh dev@my-host --name \"gpu-box\" --port 2222 --identity ~/.ssh/id_ed25519\n  cmux ssh dev@my-host --forward-agent\n  cmux ssh dev@my-host --ssh-option UserKnownHostsFile=/dev/null --ssh-option StrictHostKeyChecking=no"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux ssh <destination> [flags] [-- <remote-command-args>]\n\nOpprett et nytt arbeidsområde, merk det som remote-SSH, og start en SSH-økt i arbeidsområdet.\ncmux oppretter også et lokalt SSH-proxyendepunkt slik at nettlesertrafikk kan gå ut fra den eksterne verten.\n\nFlags:\n  --name <title>          Valgfri tittel på arbeidsområdet\n  --port <n>              SSH-port\n  --identity <path>       Sti til SSH-identitetsfil\n  -A, --forward-agent     Videresender innkallerens SSH-agent; respekterer også ForwardAgent yes fra ssh_config\n  -a, --no-forward-agent  Deaktiver SSH-agentvideresending for dette arbeidsområdet\n  --ssh-option <opt>      Ekstra SSH -o-alternativ (kan gjentas)\n  --window <id|ref|index> Målvindu for det administrerte arbeidsområdet\n  --no-focus              Opprett arbeidsområdet uten å bytte til det\n\nExample:\n  cmux ssh dev@my-host\n  cmux ssh dev@my-host --name \"gpu-box\" --port 2222 --identity ~/.ssh/id_ed25519\n  cmux ssh dev@my-host --forward-agent\n  cmux ssh dev@my-host --ssh-option UserKnownHostsFile=/dev/null --ssh-option StrictHostKeyChecking=no"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux ssh <destination> [flags] [-- <remote-command-args>]\n\nUtwórz nowy workspace, oznacz go jako remote-SSH i uruchom w nim sesję SSH.\ncmux utworzy także lokalny punkt końcowy proxy SSH, aby ruch przeglądarki wychodził ze zdalnego hosta.\n\nFlags:\n  --name <title>          Opcjonalny tytuł workspace\n  --port <n>              Port SSH\n  --identity <path>       Ścieżka pliku tożsamości SSH\n  -A, --forward-agent     Przekazuje agenta SSH wywołującego; respektuje też ForwardAgent yes z ssh_config\n  -a, --no-forward-agent  Wyłącza przekazywanie agenta SSH dla tego workspace\n  --ssh-option <opt>      Dodatkowa opcja SSH -o (można powtarzać)\n  --window <id|ref|index> Okno docelowe dla zarządzanego workspace\n  --no-focus              Tworzy workspace bez przełączania się do niego\n\nExample:\n  cmux ssh dev@my-host\n  cmux ssh dev@my-host --name \"gpu-box\" --port 2222 --identity ~/.ssh/id_ed25519\n  cmux ssh dev@my-host --forward-agent\n  cmux ssh dev@my-host --ssh-option UserKnownHostsFile=/dev/null --ssh-option StrictHostKeyChecking=no"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux ssh <destination> [flags] [-- <remote-command-args>]\n\nCrie um novo workspace, marque-o como remote-SSH e inicie uma sessão SSH nesse workspace.\nO cmux também estabelecerá um endpoint de proxy SSH local para que o tráfego do navegador saia pelo host remoto.\n\nFlags:\n  --name <title>          Título opcional do workspace\n  --port <n>              Porta SSH\n  --identity <path>       Caminho do arquivo de identidade SSH\n  -A, --forward-agent     Encaminha o agente SSH do chamador; também respeita ForwardAgent yes do ssh_config\n  -a, --no-forward-agent  Desativa o encaminhamento do agente SSH para este workspace\n  --ssh-option <opt>      Opção SSH -o extra (repetível)\n  --window <id|ref|index> Janela de destino para o workspace gerenciado\n  --no-focus              Cria o workspace sem alternar para ele\n\nExample:\n  cmux ssh dev@my-host\n  cmux ssh dev@my-host --name \"gpu-box\" --port 2222 --identity ~/.ssh/id_ed25519\n  cmux ssh dev@my-host --forward-agent\n  cmux ssh dev@my-host --ssh-option UserKnownHostsFile=/dev/null --ssh-option StrictHostKeyChecking=no"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux ssh <destination> [flags] [-- <remote-command-args>]\n\nСоздает новый workspace, помечает его как remote-SSH и запускает в нем SSH-сеанс.\ncmux также создаст локальную конечную точку SSH-прокси, чтобы трафик браузера выходил с удаленного хоста.\n\nFlags:\n  --name <title>          Необязательный заголовок workspace\n  --port <n>              SSH-порт\n  --identity <path>       Путь к файлу идентификации SSH\n  -A, --forward-agent     Пересылает SSH-агент вызывающего процесса; также учитывает ForwardAgent yes из ssh_config\n  -a, --no-forward-agent  Отключает пересылку SSH-агента для этого workspace\n  --ssh-option <opt>      Дополнительная опция SSH -o (можно повторять)\n  --window <id|ref|index> Целевое окно для управляемого workspace\n  --no-focus              Создает workspace без переключения на него\n\nExample:\n  cmux ssh dev@my-host\n  cmux ssh dev@my-host --name \"gpu-box\" --port 2222 --identity ~/.ssh/id_ed25519\n  cmux ssh dev@my-host --forward-agent\n  cmux ssh dev@my-host --ssh-option UserKnownHostsFile=/dev/null --ssh-option StrictHostKeyChecking=no"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux ssh <destination> [flags] [-- <remote-command-args>]\n\nสร้าง workspace ใหม่ ทำเครื่องหมายเป็น remote-SSH และเริ่มเซสชัน SSH ใน workspace นั้น\ncmux จะตั้งค่าปลายทาง SSH proxy ภายในเครื่องด้วย เพื่อให้ทราฟฟิกของเบราว์เซอร์ออกจากโฮสต์ระยะไกล\n\nFlags:\n  --name <title>          ชื่อ workspace ที่ระบุได้\n  --port <n>              พอร์ต SSH\n  --identity <path>       พาธไฟล์ SSH identity\n  -A, --forward-agent     ส่งต่อ SSH agent ของผู้เรียก และเคารพ ForwardAgent yes จาก ssh_config ด้วย\n  -a, --no-forward-agent  ปิดการส่งต่อ SSH agent สำหรับ workspace นี้\n  --ssh-option <opt>      ตัวเลือก SSH -o เพิ่มเติม (ระบุซ้ำได้)\n  --window <id|ref|index> หน้าต่างเป้าหมายสำหรับ workspace ที่จัดการ\n  --no-focus              สร้าง workspace โดยไม่สลับไปยัง workspace นั้น\n\nExample:\n  cmux ssh dev@my-host\n  cmux ssh dev@my-host --name \"gpu-box\" --port 2222 --identity ~/.ssh/id_ed25519\n  cmux ssh dev@my-host --forward-agent\n  cmux ssh dev@my-host --ssh-option UserKnownHostsFile=/dev/null --ssh-option StrictHostKeyChecking=no"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux ssh <destination> [flags] [-- <remote-command-args>]\n\nYeni bir workspace oluşturur, onu remote-SSH olarak işaretler ve bu workspace içinde bir SSH oturumu başlatır.\ncmux ayrıca tarayıcı trafiğinin uzak hosttan çıkabilmesi için yerel bir SSH proxy uç noktası kurar.\n\nFlags:\n  --name <title>          İsteğe bağlı workspace başlığı\n  --port <n>              SSH portu\n  --identity <path>       SSH identity dosya yolu\n  -A, --forward-agent     Çağıranın SSH agent'ını iletir; ssh_config içindeki ForwardAgent yes ayarını da dikkate alır\n  -a, --no-forward-agent  Bu workspace için SSH agent iletmeyi devre dışı bırakır\n  --ssh-option <opt>      Ek SSH -o seçeneği (tekrarlanabilir)\n  --window <id|ref|index> Yönetilen workspace için hedef pencere\n  --no-focus              Workspace'i ona geçmeden oluşturur\n\nExample:\n  cmux ssh dev@my-host\n  cmux ssh dev@my-host --name \"gpu-box\" --port 2222 --identity ~/.ssh/id_ed25519\n  cmux ssh dev@my-host --forward-agent\n  cmux ssh dev@my-host --ssh-option UserKnownHostsFile=/dev/null --ssh-option StrictHostKeyChecking=no"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux ssh <destination> [flags] [-- <remote-command-args>]\n\nСтворює новий workspace, позначає його як remote-SSH і запускає в ньому SSH-сеанс.\ncmux також створить локальну кінцеву точку SSH-проксі, щоб трафік браузера виходив із віддаленого хоста.\n\nFlags:\n  --name <title>          Необов’язкова назва workspace\n  --port <n>              SSH-порт\n  --identity <path>       Шлях до файлу ідентифікації SSH\n  -A, --forward-agent     Пересилає SSH-агент процесу-викликача; також враховує ForwardAgent yes із ssh_config\n  -a, --no-forward-agent  Вимикає пересилання SSH-агента для цього workspace\n  --ssh-option <opt>      Додаткова опція SSH -o (можна повторювати)\n  --window <id|ref|index> Цільове вікно для керованого workspace\n  --no-focus              Створює workspace без перемикання на нього\n\nExample:\n  cmux ssh dev@my-host\n  cmux ssh dev@my-host --name \"gpu-box\" --port 2222 --identity ~/.ssh/id_ed25519\n  cmux ssh dev@my-host --forward-agent\n  cmux ssh dev@my-host --ssh-option UserKnownHostsFile=/dev/null --ssh-option StrictHostKeyChecking=no"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux ssh <destination> [flags] [-- <remote-command-args>]\n\n创建一个新工作区，将其标记为 remote-SSH，并在该工作区中启动 SSH 会话。\ncmux 还会建立本地 SSH 代理端点，使浏览器流量可以从远程主机发出。\n\nFlags:\n  --name <title>          可选的工作区标题\n  --port <n>              SSH 端口\n  --identity <path>       SSH identity 文件路径\n  -A, --forward-agent     转发调用方的 SSH agent；也会遵循 ssh_config 中的 ForwardAgent yes\n  -a, --no-forward-agent  为此工作区禁用 SSH agent 转发\n  --ssh-option <opt>      额外的 SSH -o 选项（可重复）\n  --window <id|ref|index> 托管工作区的目标窗口\n  --no-focus              创建工作区但不切换到它\n\nExample:\n  cmux ssh dev@my-host\n  cmux ssh dev@my-host --name \"gpu-box\" --port 2222 --identity ~/.ssh/id_ed25519\n  cmux ssh dev@my-host --forward-agent\n  cmux ssh dev@my-host --ssh-option UserKnownHostsFile=/dev/null --ssh-option StrictHostKeyChecking=no"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux ssh <destination> [flags] [-- <remote-command-args>]\n\n建立新的工作區，將其標記為 remote-SSH，並在該工作區中啟動 SSH 工作階段。\ncmux 也會建立本機 SSH 代理端點，讓瀏覽器流量可以從遠端主機送出。\n\nFlags:\n  --name <title>          選用的工作區標題\n  --port <n>              SSH 連接埠\n  --identity <path>       SSH identity 檔案路徑\n  -A, --forward-agent     轉送呼叫端的 SSH agent；也會遵循 ssh_config 中的 ForwardAgent yes\n  -a, --no-forward-agent  對此工作區停用 SSH agent 轉送\n  --ssh-option <opt>      額外的 SSH -o 選項（可重複）\n  --window <id|ref|index> 受管理工作區的目標視窗\n  --no-focus              建立工作區但不切換到該工作區\n\nExample:\n  cmux ssh dev@my-host\n  cmux ssh dev@my-host --name \"gpu-box\" --port 2222 --identity ~/.ssh/id_ed25519\n  cmux ssh dev@my-host --forward-agent\n  cmux ssh dev@my-host --ssh-option UserKnownHostsFile=/dev/null --ssh-option StrictHostKeyChecking=no"
+          }
+        }
+      }
+    },
     "cli.reorderWorkspaces.error.emptyOrder": {
       "extractionState": "manual",
       "localizations": {
@@ -11885,6 +12161,244 @@
           "stringUnit": {
             "state": "translated",
             "value": "Usage: cmux reorder-workspaces --order <id|ref|index>,<id|ref|index>,... [flags]\n\n在一個視窗內以原子批次重新排序工作區。逗號分隔的順序是在已釘選與未釘選\n分組中置於前面的最終順序；未提及的工作區會在同一分組中列出的工作區之後\n保留原有相對順序。\n\nFlags:\n  --order <refs>                以逗號分隔、要優先放置的工作區參照\n  --window <id|ref|index>       視窗上下文\n  --dry-run                     不套用變更，只輸出解析後的最終索引\n\nExample:\n  cmux reorder-workspaces --order workspace:1,workspace:11,workspace:31\n  cmux reorder-workspaces --order workspace:11,workspace:1 --dry-run"
+          }
+        }
+      }
+    },
+    "socket.sidebar.custom.invalidName": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sidebar name must not be empty."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サイドバー名は空にできません。"
+          }
+        }
+      }
+    },
+    "socket.sidebar.custom.missing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sidebar file is missing."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サイドバーファイルが見つかりません。"
+          }
+        }
+      }
+    },
+    "socket.sidebar.custom.selectMissingName": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select requires a sidebar name."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選択するにはサイドバー名が必要です。"
+          }
+        }
+      }
+    },
+    "sidebar.custom.error": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sidebar error"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サイドバーエラー"
+          }
+        }
+      }
+    },
+    "sidebar.custom.missing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sidebar file is empty or missing."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サイドバーファイルが空、または見つかりません。"
+          }
+        }
+      }
+    },
+    "sidebar.custom.noView": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No supported SwiftUI view found."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "対応している SwiftUI ビューが見つかりません。"
+          }
+        }
+      }
+    },
+    "sidebar.custom.validation.decodeFailed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to decode sidebar JSON."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サイドバー JSON のデコードに失敗しました。"
+          }
+        }
+      }
+    },
+    "sidebar.custom.validation.fileMissing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sidebar file is missing."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サイドバーファイルが見つかりません。"
+          }
+        }
+      }
+    },
+    "sidebar.custom.validation.invalidJSON": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid JSON at %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ の JSON が無効です"
+          }
+        }
+      }
+    },
+    "sidebar.custom.validation.missingKey": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Missing key '%@' at %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%2$@ にキー '%1$@' がありません"
+          }
+        }
+      }
+    },
+    "sidebar.custom.validation.missingValue": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Missing value at %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ に値がありません"
+          }
+        }
+      }
+    },
+    "sidebar.custom.validation.readFailed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to read sidebar file."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サイドバーファイルの読み込みに失敗しました。"
+          }
+        }
+      }
+    },
+    "sidebar.custom.validation.rootPath": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "root"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ルート"
+          }
+        }
+      }
+    },
+    "sidebar.custom.validation.typeMismatch": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type mismatch at %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ の型が一致しません"
           }
         }
       }
@@ -28537,11 +29051,253 @@
     },
     "browser.focusMode.helpWithShortcut.format": {
       "extractionState": "manual",
-      "localizations": {"ar":{"stringUnit":{"state":"translated","value":"%@ (%@)"}},"bs":{"stringUnit":{"state":"translated","value":"%@ (%@)"}},"da":{"stringUnit":{"state":"translated","value":"%@ (%@)"}},"de":{"stringUnit":{"state":"translated","value":"%@ (%@)"}},"en":{"stringUnit":{"state":"translated","value":"%@ (%@)"}},"es":{"stringUnit":{"state":"translated","value":"%@ (%@)"}},"fr":{"stringUnit":{"state":"translated","value":"%@ (%@)"}},"it":{"stringUnit":{"state":"translated","value":"%@ (%@)"}},"ja":{"stringUnit":{"state":"translated","value":"%@ (%@)"}},"km":{"stringUnit":{"state":"translated","value":"%@ (%@)"}},"ko":{"stringUnit":{"state":"translated","value":"%@ (%@)"}},"nb":{"stringUnit":{"state":"translated","value":"%@ (%@)"}},"pl":{"stringUnit":{"state":"translated","value":"%@ (%@)"}},"pt-BR":{"stringUnit":{"state":"translated","value":"%@ (%@)"}},"ru":{"stringUnit":{"state":"translated","value":"%@ (%@)"}},"th":{"stringUnit":{"state":"translated","value":"%@ (%@)"}},"tr":{"stringUnit":{"state":"translated","value":"%@ (%@)"}},"uk":{"stringUnit":{"state":"translated","value":"%@ (%@)"}},"zh-Hans":{"stringUnit":{"state":"translated","value":"%@ (%@)"}},"zh-Hant":{"stringUnit":{"state":"translated","value":"%@ (%@)"}}}
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%@)"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%@)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%@)"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%@)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%@)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%@)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%@)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%@)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%@)"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%@)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%@)"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%@)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%@)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%@)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%@)"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%@)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%@)"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%@)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%@)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%@)"
+          }
+        }
+      }
     },
     "browser.focusMode.shortcutHint": {
       "extractionState": "manual",
-      "localizations": {"ar":{"stringUnit":{"state":"translated","value":"Esc Esc"}},"bs":{"stringUnit":{"state":"translated","value":"Esc Esc"}},"da":{"stringUnit":{"state":"translated","value":"Esc Esc"}},"de":{"stringUnit":{"state":"translated","value":"Esc Esc"}},"en":{"stringUnit":{"state":"translated","value":"Esc Esc"}},"es":{"stringUnit":{"state":"translated","value":"Esc Esc"}},"fr":{"stringUnit":{"state":"translated","value":"Esc Esc"}},"it":{"stringUnit":{"state":"translated","value":"Esc Esc"}},"ja":{"stringUnit":{"state":"translated","value":"Esc Esc"}},"km":{"stringUnit":{"state":"translated","value":"Esc Esc"}},"ko":{"stringUnit":{"state":"translated","value":"Esc Esc"}},"nb":{"stringUnit":{"state":"translated","value":"Esc Esc"}},"pl":{"stringUnit":{"state":"translated","value":"Esc Esc"}},"pt-BR":{"stringUnit":{"state":"translated","value":"Esc Esc"}},"ru":{"stringUnit":{"state":"translated","value":"Esc Esc"}},"th":{"stringUnit":{"state":"translated","value":"Esc Esc"}},"tr":{"stringUnit":{"state":"translated","value":"Esc Esc"}},"uk":{"stringUnit":{"state":"translated","value":"Esc Esc"}},"zh-Hans":{"stringUnit":{"state":"translated","value":"Esc Esc"}},"zh-Hant":{"stringUnit":{"state":"translated","value":"Esc Esc"}}}
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esc Esc"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esc Esc"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esc Esc"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esc Esc"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esc Esc"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esc Esc"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esc Esc"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esc Esc"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esc Esc"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esc Esc"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esc Esc"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esc Esc"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esc Esc"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esc Esc"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esc Esc"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esc Esc"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esc Esc"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esc Esc"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esc Esc"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esc Esc"
+          }
+        }
+      }
     },
     "browser.contextMenu.openLinkInDefaultBrowser": {
       "extractionState": "manual",
@@ -32079,6 +32835,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "再読み込み"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ផ្ទុកឡើងវិញ"
           }
         },
         "zh-Hans": {
@@ -76107,6 +76869,125 @@
         }
       }
     },
+    "menu.openInDevin": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Current Directory in Devin"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "現在のディレクトリを Devin で開く"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 Devin 中打开当前目录"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 Devin 中開啟目前目錄"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "현재 디렉토리를 Devin에서 열기"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktuelles Verzeichnis in Devin öffnen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir directorio actual en Devin"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir le répertoire courant dans Devin"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri la directory corrente in Devin"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åbn nuværende mappe i Devin"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otwórz bieżący katalog w Devin"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открыть текущий каталог в Devin"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otvori trenutni direktorij u Devin"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فتح الدليل الحالي في Devin"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åpne gjeldende katalog i Devin"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Diretório Atual no Devin"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปิดไดเรกทอรีปัจจุบันใน Devin"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geçerli Dizini Devin'de Aç"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Відкрити поточну теку в Devin"
+          }
+        }
+      }
+    },
     "menu.openInCursor": {
       "extractionState": "manual",
       "localizations": {
@@ -92986,6 +93867,98 @@
         }
       }
     },
+    "settings.automation.amp": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amp Integration"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amp連携"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amp 연동"
+          }
+        }
+      }
+    },
+    "settings.automation.amp.note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hooks must be installed with `cmux hooks amp install`. They no-op outside cmux terminals. When disabled, the installed Amp plugin stays inactive without needing to be removed."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "フックは`cmux hooks amp install`でインストールする必要があります。cmuxターミナル外では動作しません。無効にすると、インストール済みAmpプラグインは削除せずに停止状態に保たれます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "`cmux hooks amp install`로 훅을 설치해야 합니다. cmux 터미널 외부에서는 작동하지 않습니다. 비활성화하면 설치된 Amp 플러그인은 제거하지 않고도 비활성 상태로 유지됩니다."
+          }
+        }
+      }
+    },
+    "settings.automation.amp.subtitleOff": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amp runs without cmux integration."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AmpはCmux連携なしで動作します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amp가 cmux 연동 없이 실행됩니다."
+          }
+        }
+      }
+    },
+    "settings.automation.amp.subtitleOn": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sidebar shows Amp agent status and notifications."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サイドバーにAmpエージェントのステータスと通知が表示されます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "사이드바에 Amp 에이전트 상태와 알림이 표시됩니다."
+          }
+        }
+      }
+    },
     "settings.automation.claudeCode": {
       "extractionState": "manual",
       "localizations": {
@@ -99924,6 +100897,57 @@
           "stringUnit": {
             "state": "translated",
             "value": "Зберегти"
+          }
+        }
+      }
+    },
+    "settings.betaFeatures.customSidebars": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom Sidebars"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カスタムサイドバー"
+          }
+        }
+      }
+    },
+    "settings.betaFeatures.customSidebars.subtitleOff": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hides custom sidebars from the sidebar picker until you enable them here."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ここで有効にするまで、カスタムサイドバーをサイドバーピッカーに表示しません。"
+          }
+        }
+      }
+    },
+    "settings.betaFeatures.customSidebars.subtitleOn": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lists your sidebars from ~/.config/cmux/sidebars in the sidebar picker, rendered in an isolated helper process."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "~/.config/cmux/sidebars のサイドバーをサイドバーピッカーに表示し、分離されたヘルパープロセスで描画します。"
           }
         }
       }
@@ -125327,6 +126351,29 @@
         }
       }
     },
+    "fileExplorer.error.sshFailed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH command failed"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH コマンドに失敗しました"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH 명령에 실패했습니다"
+          }
+        }
+      }
+    },
     "fileExplorer.status.sshHomeFailed": {
       "extractionState": "manual",
       "localizations": {
@@ -133558,6 +134605,23 @@
         }
       }
     },
+    "update.error.failed.message": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Something went wrong while checking for updates. Try again, or check the update log for details."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アップデートの確認中に問題が発生しました。もう一度お試しいただくか、アップデートログをご確認ください。"
+          }
+        }
+      }
+    },
     "update.error.failed.title": {
       "extractionState": "manual",
       "localizations": {
@@ -134744,6 +135808,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Немає підключення до інтернету"
+          }
+        }
+      }
+    },
+    "update.error.notReady": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Updater is still starting. Try again in a moment."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アップデーターを準備中です。しばらくしてからもう一度お試しください。"
           }
         }
       }
@@ -157840,6 +158921,244 @@
         }
       }
     },
+    "cli.sidebar.error.allWithName": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sidebar %@: use either --all or a sidebar name, not both"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sidebar %@: --all またはサイドバー名のどちらか一方を指定してください"
+          }
+        }
+      }
+    },
+    "cli.sidebar.error.missingCommand": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sidebar requires a subcommand: validate, reload, or select"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sidebar にはサブコマンド validate、reload、select のいずれかが必要です"
+          }
+        }
+      }
+    },
+    "cli.sidebar.error.selectAll": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sidebar select does not support --all"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sidebar select は --all をサポートしていません"
+          }
+        }
+      }
+    },
+    "cli.sidebar.error.selectRequiresName": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sidebar select requires one sidebar name"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sidebar select にはサイドバー名が 1 つ必要です"
+          }
+        }
+      }
+    },
+    "cli.sidebar.error.unexpectedArguments": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sidebar %@ accepts at most one sidebar name"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sidebar %@ に指定できるサイドバー名は 1 つまでです"
+          }
+        }
+      }
+    },
+    "cli.sidebar.error.unknownCommand": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown sidebar command '%@'"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不明な sidebar コマンド '%@'"
+          }
+        }
+      }
+    },
+    "cli.sidebar.noSidebars": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No custom sidebars found."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カスタムサイドバーが見つかりません。"
+          }
+        }
+      }
+    },
+    "cli.sidebar.report.error": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ERROR %@ [%@] %@: %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "エラー %@ [%@] %@: %@"
+          }
+        }
+      }
+    },
+    "cli.sidebar.report.ok": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK %@ [%@] %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK %@ [%@] %@"
+          }
+        }
+      }
+    },
+    "cli.sidebar.report.reloadSummary": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reloaded %d valid sidebars. %d valid, %d invalid."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有効なサイドバーを %d 件再読み込みしました。%d 件有効、%d 件無効です。"
+          }
+        }
+      }
+    },
+    "cli.sidebar.report.selected": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selected %@."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ を選択しました。"
+          }
+        }
+      }
+    },
+    "cli.sidebar.report.summary": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d valid, %d invalid."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d 件有効、%d 件無効です。"
+          }
+        }
+      }
+    },
+    "cli.sidebar.unknownError": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown error"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不明なエラー"
+          }
+        }
+      }
+    },
+    "cli.sidebar.usage": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usage: cmux sidebar <validate|reload|select> [name|--all] [--json]\n\nValidate, reload, or select custom left sidebars from ~/.config/cmux/sidebars.\nSwift files win over JSON files with the same base name.\n\nCommands:\n  validate [name]   Validate all custom sidebars, or one named sidebar\n  reload [name]     Validate all sidebars, then reload every valid one\n  select <name>     Validate and activate one custom sidebar\n\nExamples:\n  cmux sidebar validate\n  cmux sidebar reload --all\n  cmux sidebar select finder.tree"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用法: cmux sidebar <validate|reload|select> [name|--all] [--json]\n\n~/.config/cmux/sidebars のカスタム左サイドバーを検証、再読み込み、または選択します。\n同じベース名の JSON ファイルより Swift ファイルが優先されます。\n\nコマンド:\n  validate [name]   すべてのカスタムサイドバー、または指定したサイドバーを検証します\n  reload [name]     すべてのサイドバーを検証して、有効なものを再読み込みします\n  select <name>     指定したカスタムサイドバーを検証して有効化します\n\n例:\n  cmux sidebar validate\n  cmux sidebar reload --all\n  cmux sidebar select finder.tree"
+          }
+        }
+      }
+    },
     "cli.rightSidebar.error.workspaceRequiresValue": {
       "extractionState": "manual",
       "localizations": {
@@ -171523,6 +172842,381 @@
     "sourceControl.action.discard" : {"extractionState":"manual","localizations":{"en":{"stringUnit":{"state":"translated","value":"Discard Changes"}},"ja":{"stringUnit":{"state":"translated","value":"変更を破棄"}}}},
     "filePreview.refreshDiff" : {"extractionState":"manual","localizations":{"en":{"stringUnit":{"state":"translated","value":"Refresh Diff"}},"ja":{"stringUnit":{"state":"translated","value":"差分を更新"}}}},
     "filePreview.diff.loading" : {"extractionState":"manual","localizations":{"en":{"stringUnit":{"state":"translated","value":"Loading diff…"}},"ja":{"stringUnit":{"state":"translated","value":"差分を読み込み中…"}}}},
-    "filePreview.diff.unavailable" : {"extractionState":"manual","localizations":{"en":{"stringUnit":{"state":"translated","value":"No diff available — this file is not tracked by Git."}},"ja":{"stringUnit":{"state":"translated","value":"差分はありません — このファイルは Git で追跡されていません。"}}}}
+    "filePreview.diff.unavailable" : {"extractionState":"manual","localizations":{"en":{"stringUnit":{"state":"translated","value":"No diff available — this file is not tracked by Git."}},"ja":{"stringUnit":{"state":"translated","value":"差分はありません — このファイルは Git で追跡されていません。"}}}},
+    "ghostty.copy-mode.indicator": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vim"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vim"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vim"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vim"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vim"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vim"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vim"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vim"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vim"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vim"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vim"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vim"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vim"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vim"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vim"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vim"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vim"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vim"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vim"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vim"
+          }
+        }
+      }
+    },
+    "ghostty.key-table.indicator": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جدول المفاتيح"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tabela tipki"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tasttabel"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tastentabelle"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "key table"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tabla de teclas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "table des touches"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tabella tasti"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "キーテーブル"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "តារាងគ្រាប់ចុច"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "키 테이블"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tasttabell"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tabela klawiszy"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tabela de teclas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "таблица клавиш"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ตารางปุ่ม"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tuş tablosu"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "таблиця клавіш"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按键表"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按鍵表"
+          }
+        }
+      }
+    },
+    "ghostty.key-table.icon.accessibility": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جدول المفاتيح"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabela tipki"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasttabel"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tastentabelle"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Key table"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabla de teclas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Table des touches"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabella tasti"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "キーテーブル"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "តារាងគ្រាប់ចុច"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "키 테이블"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasttabell"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabela klawiszy"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabela de teclas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Таблица клавиш"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ตารางปุ่ม"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tuş tablosu"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Таблиця клавіш"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按键表"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按鍵表"
+          }
+        }
+      }
+    }
   }
 }
