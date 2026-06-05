@@ -2,6 +2,48 @@
 
 All notable changes to cmux are documented here.
 
+## [1.64.22] - 2026-06-04
+
+### Added
+- SSH agent forwarding for `cmux ssh`, so remote sessions can use your local SSH keys
+- Vibe-codable custom sidebars: a runtime Swift interpreter for building your own sidebar (behind Beta Features), with CLI validation and live reload
+- Persisted word-wrap setting for the file editor
+- "Open Current Directory in Devin" command
+- Live status reporting in the Amp session plugin, driving the tab status bar
+
+### Changed
+- Anchor the textbox autocomplete to the cursor
+- Open group config files in your configured editor
+- Isolate browser WebKit process pools so one crashing browser pane no longer takes down the others
+- Move large scrollback read-text work off the main actor to reduce UI hangs
+
+### Fixed
+- Fix a settings-observation task leak that grew the app process to 4.4 GB over ~23h
+- Fix a browser pane render loop that re-navigated the WebView on every CoreAnimation commit (~39% main-thread CPU)
+- Fix a WebKit post-wake crash with sleep/wake-aware hidden-webview discard scheduling
+- Fix the Markdown and file-preview text editor hanging at 100% CPU on click or drag-select
+- Stop cmux from launching child processes under Rosetta on Apple Silicon
+- Recover terminal focus when the first responder is stranded in another window
+- Fix the browser address bar so a single click places a caret instead of selecting the whole URL
+- Fix copy-mode vim keys (j/k/h/l) being swallowed under non-ASCII input sources (Korean, Japanese Kana, Zhuyin)
+- Fix terminal copy-mode cursor navigation
+- Fix terminal selection on mouse-up while the find overlay is open
+- Fix TextBox IME and input-source handling
+- Fix the macOS "wants to access data from other apps" prompt on agent session start and quit by moving the control socket out of Application Support
+- Fix Codex auto-resume emitting an invalid `-s disabled` sandbox flag
+- Fix agent session resume cd-ing into the wrong directory after a cwd drift
+- Fix restored cwd bindings after a reboot
+- Fix a stale sidebar git branch after cd-ing out of a repo into a non-git directory
+- Fix a TextBox teardown crash when toggling the sidebar background
+- Fix a workspace-close teardown hang
+- Fix the workspace-group "Delete Group" context-menu action being a no-op
+- Fix the diff viewer showing a raw CLI error and beeping when there is no diff
+- Fix sidebar drag-and-drop frame collection with the lazy (virtualized) sidebar
+- Lazy-load file explorer roots to speed up opening the file tree
+- Fix Claude workflow resume transcript resolution
+- Fix opening the remote SSH file browser
+- Fix Sparkle update packaging and Claude hook transcript scaling
+
 ## [1.64.21] - 2026-06-02
 
 ### Added
