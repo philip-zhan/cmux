@@ -2,6 +2,17 @@
 
 All notable changes to cmux are documented here.
 
+## [1.64.23] - 2026-06-22
+
+### Added
+- Cmd-=/Cmd-- (and Cmd-0 to reset) now zoom the font in the file-preview code editor, matching the terminal and browser font-zoom keys
+
+### Fixed
+- Fix font zoom in the code editor not taking effect (pinch and scroll-wheel zoom now work too)
+
+### Changed
+- Sync with upstream cmux through 2026-06-22, bringing a large batch of upstream features, performance work, and fixes since 1.64.22
+
 ## [1.64.22] - 2026-06-04
 
 ### Added
