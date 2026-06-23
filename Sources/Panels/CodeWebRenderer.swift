@@ -92,9 +92,7 @@ struct CodeWebRenderer: NSViewRepresentable {
                 coordinator?.applyFontSize(Int(size.rounded()))
             }
             typed.onSaveChord = onSaveRequested
-            if typed.currentFontSize != CGFloat(fontSize) {
-                typed.setFontSize(CGFloat(fontSize))
-            }
+            typed.applyBaseFontSize(CGFloat(fontSize))
         }
         webView.navigationDelegate = coordinator
         webView.uiDelegate = coordinator
@@ -255,6 +253,18 @@ struct CodeWebRenderer: NSViewRepresentable {
             onFontSizeChanged(size)
         }
 
+        /// A (re)loaded shell renders at the payload's base font size. When the
+        /// user has zoomed (keyboard/magnify/scroll), `webView.currentFontSize`
+        /// holds their choice — push it back so the editor matches the AppKit
+        /// source of truth instead of snapping to the base size.
+        private func reapplyUserFontSizeIfNeeded() {
+            guard let webView, isLoaded else { return }
+            let size = Int(webView.currentFontSize.rounded())
+            guard let base = (pendingPayload ?? lastPayload)?.fontSize, base != size else { return }
+            let js = "window.__cmuxCodeSetFontSize && window.__cmuxCodeSetFontSize(\(size));"
+            webView.evaluateJavaScript(js, completionHandler: nil)
+        }
+
         private func apply(payload: CodeWebRendererPayload) {
             guard let webView else { return }
             guard let data = try? JSONEncoder().encode(payload),
@@ -284,6 +294,7 @@ struct CodeWebRenderer: NSViewRepresentable {
                 if let pending = pendingPayload {
                     apply(payload: pending)
                 }
+                reapplyUserFontSizeIfNeeded()
                 applyBlame()
             case "contentChanged":
                 let content = (body["content"] as? String) ?? ""
@@ -304,7 +315,9 @@ struct CodeWebRenderer: NSViewRepresentable {
                 apply(payload: payload)
                 lastPayload = payload
             }
-            // The payload remounts a fresh editor; re-attach the current blame.
+            // The payload remounts a fresh editor at the base font size; restore
+            // the user's zoom and re-attach the current blame.
+            reapplyUserFontSizeIfNeeded()
             applyBlame()
         }
 

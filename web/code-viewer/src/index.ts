@@ -924,11 +924,23 @@ function applyReadOnly(readOnly: boolean) {
 }
 
 function applyFontSize(px: number) {
-  const ext = EditorView.theme({ "&": { fontSize: `${px}px` } });
-  const effects = fontSizeCompartment.reconfigure(ext);
-  editor?.dispatch({ effects });
-  mergeView?.a.dispatch({ effects });
-  mergeView?.b.dispatch({ effects });
+  const size = `${px}px`;
+  // Drive the font size from the DOM directly. Reconfiguring the
+  // `fontSizeCompartment` theme (`EditorView.theme({"&": {fontSize}})`) did not
+  // reliably re-render the font after the initial mount, so we set it as an
+  // inline style on each editor's root element instead. `.cm-scroller`,
+  // `.cm-content`, and `.cm-gutters` all inherit from `.cm-editor` (the view's
+  // `dom`), so line text and the gutter scale together.
+  const apply = (view: EditorView | null | undefined) => {
+    if (!view) return;
+    view.dom.style.fontSize = size;
+    // The size change alters line geometry; force a re-measure so scrolling,
+    // cursor placement, and gutter alignment stay correct.
+    view.requestMeasure();
+  };
+  apply(editor);
+  apply(mergeView?.a);
+  apply(mergeView?.b);
 }
 
 function ensureRoot(): HTMLElement {
