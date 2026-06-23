@@ -28,6 +28,10 @@ final class CodeWebView: WKWebView {
     var onSaveChord: (() -> Void)?
 
     private(set) var currentFontSize: CGFloat = CodeWebView.defaultFontSize
+    /// Set once the user manually zooms (keyboard, magnify, or scroll-wheel) so
+    /// the chosen size sticks across SwiftUI rebuilds instead of snapping back to
+    /// the `fontSize` prop on the next `updateNSView`.
+    private var hasUserFontSizeOverride = false
     private var pendingSaveShortcutChordPrefix: ShortcutStroke?
 
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool {
@@ -43,11 +47,34 @@ final class CodeWebView: WKWebView {
         guard event.type == .keyDown else {
             return super.performKeyEquivalent(with: event)
         }
+        if let zoom = browserZoomShortcutAction(
+            flags: event.modifierFlags,
+            chars: event.charactersIgnoringModifiers ?? "",
+            keyCode: event.keyCode,
+            literalChars: event.characters
+        ) {
+            applyKeyboardZoom(zoom)
+            return true
+        }
         if let shouldSave = saveShortcutMatch(for: event) {
             if shouldSave { onSaveChord?() }
             return true
         }
         return super.performKeyEquivalent(with: event)
+    }
+
+    /// Applies a Cmd-`+`/`-`/`0` zoom command to the editor font size. Reuses the
+    /// same `browserZoomShortcutAction` detector that drives the terminal and
+    /// browser font zoom so the code editor honors the identical universal keys.
+    private func applyKeyboardZoom(_ action: BrowserZoomShortcutAction) {
+        switch action {
+        case .zoomIn:
+            adjustFontSize(by: FilePreviewInteraction.zoomStep)
+        case .zoomOut:
+            adjustFontSize(by: 1 / FilePreviewInteraction.zoomStep)
+        case .reset:
+            setFontSize(Self.defaultFontSize)
+        }
     }
 
     private func saveShortcutMatch(for event: NSEvent) -> Bool? {
@@ -91,7 +118,22 @@ final class CodeWebView: WKWebView {
         }
     }
 
+    /// Applies the base font size from the SwiftUI `fontSize` prop. Ignored once
+    /// the user has manually zoomed this editor so their choice survives the
+    /// `updateNSView` calls that fire on every panel state change (e.g. typing).
+    func applyBaseFontSize(_ size: CGFloat) {
+        guard !hasUserFontSizeOverride else { return }
+        apply(fontSize: size)
+    }
+
+    /// Sets an explicit, user-chosen font size (clamped) and records that the
+    /// user has overridden the base size for the rest of the panel's lifetime.
     func setFontSize(_ size: CGFloat) {
+        hasUserFontSizeOverride = true
+        apply(fontSize: size)
+    }
+
+    private func apply(fontSize size: CGFloat) {
         let clamped = min(max(size, Self.minimumFontSize), Self.maximumFontSize)
         guard clamped.isFinite, clamped != currentFontSize else { return }
         currentFontSize = clamped

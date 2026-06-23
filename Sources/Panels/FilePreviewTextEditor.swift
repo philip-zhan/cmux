@@ -230,6 +230,15 @@ final class SavingTextView: NSTextView {
         guard event.type == .keyDown else {
             return super.performKeyEquivalent(with: event)
         }
+        if let zoom = browserZoomShortcutAction(
+            flags: event.modifierFlags,
+            chars: event.charactersIgnoringModifiers ?? "",
+            keyCode: event.keyCode,
+            literalChars: event.characters
+        ) {
+            applyKeyboardZoom(zoom)
+            return true
+        }
         guard let shouldSave = saveShortcutMatch(for: event) else {
             return super.performKeyEquivalent(with: event)
         }
@@ -237,6 +246,19 @@ final class SavingTextView: NSTextView {
             panel?.saveTextContent()
         }
         return true
+    }
+
+    /// Applies a Cmd-`+`/`-`/`0` zoom command to the preview font size, matching
+    /// the CodeMirror editor and the terminal's font-zoom keys.
+    private func applyKeyboardZoom(_ action: BrowserZoomShortcutAction) {
+        switch action {
+        case .zoomIn:
+            adjustPreviewFontSize(by: FilePreviewInteraction.zoomStep)
+        case .zoomOut:
+            adjustPreviewFontSize(by: 1 / FilePreviewInteraction.zoomStep)
+        case .reset:
+            setPreviewFontSize(Self.defaultPreviewFontSize)
+        }
     }
 
     override func magnify(with event: NSEvent) {
