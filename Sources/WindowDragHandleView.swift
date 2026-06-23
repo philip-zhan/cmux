@@ -1,5 +1,6 @@
 import AppKit
 import Bonsplit
+import CmuxTestSupport
 import SwiftUI
 
 enum WindowMouseMovedEventsCoordinator {
@@ -1056,7 +1057,7 @@ func recordMinimalModeSidebarChromeHoverForUITest(
             locationInWindow,
             in: window
         )
-    _ = CmuxUITestCapture.mutateJSONObjectIfConfigured(envKey: "CMUX_UI_TEST_BONSPLIT_TAB_DRAG_PATH") { payload in
+    _ = UITestCaptureSink().mutateJSONObjectIfConfigured(envKey: "CMUX_UI_TEST_BONSPLIT_TAB_DRAG_PATH") { payload in
         let count = (payload["minimalSidebarHoverEventCount"] as? String).flatMap(Int.init) ?? 0
         payload["minimalSidebarHoverEventCount"] = String(count + 1)
         payload["minimalSidebarHoverEventType"] = String(describing: eventType)
@@ -1359,13 +1360,6 @@ struct WindowDragHandleView: NSViewRepresentable {
     }
 }
 
-private func titlebarDoubleClickMonitorShouldDeferToRegisteredControl(
-    window: NSWindow,
-    locationInWindow: NSPoint
-) -> Bool {
-    isMinimalModeTitlebarControlHit(window: window, locationInWindow: locationInWindow)
-}
-
 /// Local monitor that guarantees double-clicks in custom titlebar surfaces trigger
 /// the standard macOS titlebar action even when the visible strip is hosted by
 /// higher-level SwiftUI/AppKit container views.
@@ -1405,7 +1399,7 @@ struct TitlebarDoubleClickMonitorView: NSViewRepresentable {
                 coordinator.lastClick = nil
                 return event
             }
-            guard !titlebarDoubleClickMonitorShouldDeferToRegisteredControl(
+            guard !minimalModeTitlebarDoubleClickShouldDefer(
                 window: window,
                 locationInWindow: event.locationInWindow
             ) else {
@@ -1696,14 +1690,17 @@ struct MinimalModeTitlebarEventSurfaceView: NSViewRepresentable {
                 lastTitlebarClick = nil
                 return event
             }
-            guard !isMinimalModeTitlebarControlHit(window: window, locationInWindow: locationInWindow) else {
+            guard !minimalModeTitlebarDoubleClickShouldDefer(
+                window: window,
+                locationInWindow: locationInWindow
+            ) else {
                 lastTitlebarClick = nil
                 return event
             }
 
             #if DEBUG
             if ProcessInfo.processInfo.environment["CMUX_UI_TEST_BONSPLIT_TAB_DRAG_SETUP"] == "1" {
-                _ = CmuxUITestCapture.mutateJSONObjectIfConfigured(envKey: "CMUX_UI_TEST_BONSPLIT_TAB_DRAG_PATH") { payload in
+                _ = UITestCaptureSink().mutateJSONObjectIfConfigured(envKey: "CMUX_UI_TEST_BONSPLIT_TAB_DRAG_PATH") { payload in
                     let count = (payload["minimalTitlebarEventSurfaceMouseDownCount"] as? String).flatMap(Int.init) ?? 0
                     payload["minimalTitlebarEventSurfaceMouseDownCount"] = String(count + 1)
                     payload["minimalTitlebarEventSurfaceLastPoint"] = windowDragHandleFormatPoint(locationInWindow)
