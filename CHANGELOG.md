@@ -2,6 +2,14 @@
 
 All notable changes to cmux are documented here.
 
+## [1.64.24] - 2026-06-23
+
+### Added
+- Cmd +/- font zoom in the file-preview code editor
+
+### Fixed
+- Fix Cmd+P quick file open showing no results: the bundled ripgrep binary was no longer being copied into the app, so file search returned nothing on machines without a system `rg`
+
 ## [1.64.22] - 2026-06-04
 
 ### Added
