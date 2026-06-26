@@ -2,6 +2,40 @@
 
 All notable changes to cmux are documented here.
 
+## [1.64.25] - 2026-06-26
+
+### Added
+- File preview search (Cmd+F) now works for every text file, including `.env` and other extensionless or plain-text files, by rendering them in the CodeMirror editor (large files stay on the lighter native editor)
+- Sleepy Mode: a menu-bar screensaver that keeps the Mac awake via `caffeinate`
+- HTTP Basic authentication prompt in browser panes
+- One-step grouped workspace creation
+- `cmux mobile set-font` to live-resize the mirrored iOS terminal
+- Allow `.m4r` files as notification sounds
+
+### Changed
+- Terminal and browser surface tabs hug their content instead of stretching to a fixed width
+- Bump Sparkle to 2.9.3 to fix auto-update killing running agents on macOS 26
+- Merge the latest upstream changes into the fork
+
+### Fixed
+- Fix high-resolution mouse runaway scroll by only doubling precise scroll deltas for gesture devices
+- Fix a launch crash from blank SF Symbols on macOS 27
+- Fix macOS auth handoff for non-Chrome default browsers
+- Restore the WebAuthn bridge injection in browser panes
+- Fix Canvas keyboard shortcut routing
+- Fix a tab-bar layout shift when holding modifier keys
+- Fix a sidebar lag regression, the Codex sidebar status lifecycle, and sidebar tab selection highlight timing
+- Fix Cmd+T opening in home after an agent-resume session restore
+- Fix remote SSH workspace working-directory tracking, ssh-tmux remote path and attach seeding, and fail clearly when the remote tmux is older than 3.2
+- Fix diff viewer transparency
+- Fix OpenCode bunfs worker autoresume
+- CLI: default workspace-scoped commands to the caller's workspace instead of the focused one
+- Open local HTML previews without stealing focus
+- Keep blocking browser automation off the main thread
+
+### Removed
+- Remove the high-memory pane warning UI (the triangle indicator and popover); the underlying guardrail engine stays
+
 ## [1.64.24] - 2026-06-23
 
 ### Added
