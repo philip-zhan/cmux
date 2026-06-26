@@ -36,10 +36,34 @@ final class CodePreviewEngineSettingsTests: XCTestCase {
         XCTAssertTrue(CodePreviewEngineSettings.shouldUseCodeMirror(forPath: "/tmp/unknown.xyzqq", defaults: defaults))
     }
 
-    func testAutoEngineUsesDetectorAndSkipsPlain() {
+    func testAutoEngineUsesCodeMirrorForEveryTextFileRegardlessOfLanguage() {
         defaults.set(CodePreviewEngine.auto.rawValue, forKey: CodePreviewEngineSettings.engineKey)
+        // Recognized languages, plain text, and unknown extensions all route to
+        // CodeMirror so search/highlighting work everywhere.
         XCTAssertTrue(CodePreviewEngineSettings.shouldUseCodeMirror(forPath: "/tmp/foo.swift", defaults: defaults))
         XCTAssertTrue(CodePreviewEngineSettings.shouldUseCodeMirror(forPath: "/tmp/foo.py", defaults: defaults))
-        XCTAssertFalse(CodePreviewEngineSettings.shouldUseCodeMirror(forPath: "/tmp/unknown.xyzqq", defaults: defaults))
+        XCTAssertTrue(CodePreviewEngineSettings.shouldUseCodeMirror(forPath: "/tmp/.env", defaults: defaults))
+        XCTAssertTrue(CodePreviewEngineSettings.shouldUseCodeMirror(forPath: "/tmp/notes.txt", defaults: defaults))
+        XCTAssertTrue(CodePreviewEngineSettings.shouldUseCodeMirror(forPath: "/tmp/unknown.xyzqq", defaults: defaults))
+    }
+
+    func testAutoEngineFallsBackToNativeForLargeFiles() {
+        defaults.set(CodePreviewEngine.auto.rawValue, forKey: CodePreviewEngineSettings.engineKey)
+        let underCap = CodePreviewEngineSettings.maximumCodeMirrorBytes
+        let overCap = CodePreviewEngineSettings.maximumCodeMirrorBytes + 1
+        XCTAssertTrue(
+            CodePreviewEngineSettings.shouldUseCodeMirror(forPath: "/tmp/foo.swift", fileSize: underCap, defaults: defaults)
+        )
+        XCTAssertFalse(
+            CodePreviewEngineSettings.shouldUseCodeMirror(forPath: "/tmp/foo.swift", fileSize: overCap, defaults: defaults)
+        )
+    }
+
+    func testCodeMirrorEngineIgnoresSizeCap() {
+        defaults.set(CodePreviewEngine.codeMirror.rawValue, forKey: CodePreviewEngineSettings.engineKey)
+        let overCap = CodePreviewEngineSettings.maximumCodeMirrorBytes + 1
+        XCTAssertTrue(
+            CodePreviewEngineSettings.shouldUseCodeMirror(forPath: "/tmp/foo.log", fileSize: overCap, defaults: defaults)
+        )
     }
 }
