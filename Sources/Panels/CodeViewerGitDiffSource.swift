@@ -10,12 +10,14 @@ enum CodeViewerGitDiffSource {
         let modified: String
     }
 
-    /// Loads the diff off the main actor — `Process` calls are blocking.
+    /// Loads the diff off the cooperative pool — the file reads and `git` calls
+    /// below are blocking and must not occupy a Swift-concurrency cooperative
+    /// thread (see ``GitCommandRunner``).
     static func load(filePath: String) async -> Diff? {
         guard !filePath.isEmpty else { return nil }
-        return await Task.detached(priority: .userInitiated) {
+        return await GitCommandRunner.offCooperativePool {
             loadSync(filePath: filePath)
-        }.value
+        }
     }
 
     private static func loadSync(filePath: String) -> Diff? {
@@ -56,33 +58,6 @@ enum CodeViewerGitDiffSource {
 
     @discardableResult
     private static func runGit(_ arguments: [String]) throws -> String {
-        let process = Process()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
-        process.arguments = ["git"] + arguments
-        let stdout = Pipe()
-        let stderr = Pipe()
-        process.standardOutput = stdout
-        process.standardError = stderr
-        try process.run()
-
-        // Drain both pipes before waiting on the process. macOS pipe buffers
-        // are ~64KB; `git show` on a large file overflows that, blocks on the
-        // write, and deadlocks against `waitUntilExit()` if we wait first.
-        var outData = Data()
-        let drainQueue = DispatchQueue(label: "com.cmux.git-diff.pipe", attributes: .concurrent)
-        let group = DispatchGroup()
-        drainQueue.async(group: group) {
-            outData = stdout.fileHandleForReading.readDataToEndOfFile()
-        }
-        drainQueue.async(group: group) {
-            _ = stderr.fileHandleForReading.readDataToEndOfFile()
-        }
-        group.wait()
-        process.waitUntilExit()
-
-        guard process.terminationStatus == 0 else {
-            throw NSError(domain: "CodeViewerGitDiffSource", code: Int(process.terminationStatus))
-        }
-        return String(data: outData, encoding: .utf8) ?? ""
+        try GitCommandRunner.run(arguments)
     }
 }

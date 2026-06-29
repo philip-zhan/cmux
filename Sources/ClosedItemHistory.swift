@@ -380,22 +380,15 @@ final class ClosedItemHistoryStore: ObservableObject {
             finishPersistedRecordsLoad(Self.loadRecords(fileURL: fileURL))
         }
         needsPersistenceAfterPersistedRecordsLoad = false
-        let recordsSnapshot = records
-        let revisionSnapshot = revision
-        if persistsRecordsSynchronously {
-            Self.saveRecords(recordsSnapshot, fileURL: fileURL)
-            return
-        }
-        let semaphore = DispatchSemaphore(value: 0)
-        Task.detached(priority: .userInitiated) {
-            await ClosedItemHistoryPersistenceActor.shared.save(
-                recordsSnapshot,
-                fileURL: fileURL,
-                revision: revisionSnapshot
-            )
-            semaphore.signal()
-        }
-        semaphore.wait()
+        // The terminal flush must finish before the app exits, so it has to
+        // block the (main) caller. Write synchronously here rather than awaiting
+        // a `Task.detached`: a detached task needs a free Swift-concurrency
+        // cooperative thread, and if that pool is saturated (e.g. by wedged
+        // background `git` work) the task never runs and the semaphore wait
+        // deadlocks the main thread — the quit-time hang this replaces. This is
+        // the same direct write the `persistsRecordsSynchronously` path uses;
+        // `records` already holds the latest revision's contents.
+        Self.saveRecords(records, fileURL: fileURL)
     }
 
     private func loadPersistedRecordsAsync(from fileURL: URL) {

@@ -8,12 +8,14 @@ import Foundation
 /// repo, git not installed, or an empty path). Mirrors the repo-root and
 /// relative-path discovery used by `CodeViewerGitDiffSource`.
 enum CodeViewerGitBlameSource {
-    /// Loads blame off the main actor — `Process` calls are blocking.
+    /// Loads blame off the cooperative pool — the file reads and `git` calls
+    /// below are blocking and must not occupy a Swift-concurrency cooperative
+    /// thread (see ``GitCommandRunner``).
     static func load(filePath: String) async -> [GitBlameLine]? {
         guard !filePath.isEmpty else { return nil }
-        return await Task.detached(priority: .userInitiated) {
+        return await GitCommandRunner.offCooperativePool {
             loadSync(filePath: filePath)
-        }.value
+        }
     }
 
     private static func loadSync(filePath: String) -> [GitBlameLine]? {
@@ -100,7 +102,7 @@ enum CodeViewerGitBlameSource {
         !sha.isEmpty && sha.allSatisfy { $0 == "0" }
     }
 
-    // MARK: - Git plumbing (independent copy of the diff source's helpers)
+    // MARK: - Git plumbing
 
     private static func repoRoot(for fileURL: URL) -> URL? {
         let dir = fileURL.deletingLastPathComponent()
@@ -120,33 +122,6 @@ enum CodeViewerGitBlameSource {
 
     @discardableResult
     private static func runGit(_ arguments: [String]) throws -> String {
-        let process = Process()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
-        process.arguments = ["git"] + arguments
-        let stdout = Pipe()
-        let stderr = Pipe()
-        process.standardOutput = stdout
-        process.standardError = stderr
-        try process.run()
-
-        // Drain both pipes before waiting. macOS pipe buffers are ~64KB; blame
-        // on a large file overflows that, blocks on the write, and would
-        // deadlock against `waitUntilExit()` if we waited first.
-        var outData = Data()
-        let drainQueue = DispatchQueue(label: "com.cmux.git-blame.pipe", attributes: .concurrent)
-        let group = DispatchGroup()
-        drainQueue.async(group: group) {
-            outData = stdout.fileHandleForReading.readDataToEndOfFile()
-        }
-        drainQueue.async(group: group) {
-            _ = stderr.fileHandleForReading.readDataToEndOfFile()
-        }
-        group.wait()
-        process.waitUntilExit()
-
-        guard process.terminationStatus == 0 else {
-            throw NSError(domain: "CodeViewerGitBlameSource", code: Int(process.terminationStatus))
-        }
-        return String(data: outData, encoding: .utf8) ?? ""
+        try GitCommandRunner.run(arguments)
     }
 }
