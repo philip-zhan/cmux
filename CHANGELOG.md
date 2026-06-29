@@ -2,6 +2,29 @@
 
 All notable changes to cmux are documented here.
 
+## [1.64.26] - 2026-06-29
+
+### Added
+- The right-sidebar Dock is now a full panel container that holds terminals, browsers, and splits
+- Option to proceed anyway when a site presents an invalid SSL certificate
+- iOS chat can stream agent prose as it generates (off by default)
+- More reliable agent-session tracking, with a Codex picker GUI
+
+### Changed
+- App termination is now bounded by a force-exit watchdog so quitting can't hang indefinitely
+- Cache git dirty-state snapshots between watcher events for snappier status updates
+- Merge the latest upstream changes into the fork
+
+### Fixed
+- Fix the app becoming unresponsive (including at quit) when file diff/blame git work piled up and starved the concurrency pool
+- Fix the light theme rendering white-on-white when host and surface themes diverged
+- Fix workspace color picker hue drift
+- Fix Cmd+I (Show Notifications) breaking italics in browser text editors
+- Fix the iOS chat top scroll edge blend
+- Fix workspace group drag-and-drop intent
+- Fix fish-shell session resume by emitting a cwd-guard without POSIX brace grouping
+- Fix a Claude shim mutual-exec loop
+
 ## [1.64.25] - 2026-06-26
 
 ### Added
