@@ -1,5 +1,6 @@
 import Foundation
 import Testing
+import os
 
 @testable import cmux
 
@@ -88,5 +89,40 @@ import Testing
     @Test func offCooperativePoolReturnsResult() async {
         let value = await GitCommandRunner.offCooperativePool { 21 * 2 }
         #expect(value == 42)
+    }
+
+    /// ``GitCommandRunner/offCooperativePool(_:)`` never runs more closures at
+    /// once than its internal ceiling, so a flood of diff/blame loads can't
+    /// saturate the libdispatch worker pool and hang the app — the failure in
+    /// the 64-thread `com.cmux.git-process.work` stackshot. Without the gate,
+    /// all 32 closures overlap and `peak` reaches 32; with it, `peak` stays at
+    /// or below the ceiling.
+    @Test func offCooperativePoolCapsConcurrentClosures() async {
+        // Guards a tiny counter pair mutated from synchronous workQueue closures
+        // (non-async callbacks); covered by the GitCommandRunner lock carve-out.
+        let state = OSAllocatedUnfairLock(initialState: (current: 0, peak: 0))
+        await withTaskGroup(of: Void.self) { group in
+            for _ in 0..<32 {
+                group.addTask {
+                    await GitCommandRunner.offCooperativePool {
+                        state.withLock { s in
+                            s.current += 1
+                            s.peak = max(s.peak, s.current)
+                        }
+                        // Deliberate hold (not a poll/settle): widens the window
+                        // so concurrent closures actually coincide, making an
+                        // unbounded gate observable as a peak above the ceiling.
+                        Thread.sleep(forTimeInterval: 0.01)
+                        state.withLock { $0.current -= 1 }
+                    }
+                }
+            }
+        }
+        let peak = state.withLock { $0.peak }
+        // Ceiling is an implementation detail; assert against a value at least as
+        // large as it so the test tracks the cap without hardcoding churn, while
+        // still failing hard on the unbounded (peak == 32) regression.
+        #expect(peak >= 1)
+        #expect(peak <= 8)
     }
 }

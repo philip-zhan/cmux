@@ -2,6 +2,11 @@
 
 All notable changes to cmux are documented here.
 
+## [1.64.27] - 2026-06-30
+
+### Fixed
+- Fix the app freezing (including at quit) when a code-viewer diff or blame pointed at a removed or unresponsive working directory and git work piled up
+
 ## [1.64.26] - 2026-06-29
 
 ### Added
