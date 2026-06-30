@@ -36,6 +36,23 @@ enum GitCommandRunner {
     // never stuck behind a worker thread blocked in `waitUntilExit()`.
     private static let timerQueue = DispatchQueue(label: "com.cmux.git-process.timer")
 
+    /// Maximum number of git load routines that may occupy a `workQueue` thread
+    /// at once.
+    ///
+    /// `SIGKILL` cannot reclaim a child wedged in an uninterruptible kernel wait
+    /// (e.g. stat-ing a stale network mount for a closed working directory): the
+    /// child survives the kill, holds its stdout/stderr pipe open, and the
+    /// draining worker thread blocks indefinitely. Without a ceiling, one such
+    /// directory makes every diff/blame load leak a `workQueue` thread until the
+    /// process hits libdispatch's 64-thread soft limit and the app hangs (e.g.
+    /// the main-thread quit flush stalls behind the saturated pool). This gate
+    /// bounds the number of simultaneously-wedged children; further loads queue
+    /// off-thread until a slot frees instead of spawning unbounded threads.
+    private static let maxConcurrentLoads = 4
+
+    // Bounds how many `offCooperativePool` closures hold a worker thread at once.
+    private static let gate = ConcurrencyGate(limit: maxConcurrentLoads)
+
     /// Runs `work` on a dedicated background thread off the cooperative pool and
     /// returns its result.
     ///
@@ -43,14 +60,24 @@ enum GitCommandRunner {
     /// reads, and ``run(_:timeout:)`` calls) so none of that blocking I/O lands
     /// on a Swift-concurrency cooperative thread.
     ///
+    /// At most ``maxConcurrentLoads`` closures run at once; excess callers
+    /// suspend (off-thread) at the gate until a slot frees, so a wedged child
+    /// that never returns can hold a worker thread without letting later loads
+    /// pile new threads onto the bounded libdispatch pool. A closure that never
+    /// returns deliberately holds its slot forever — that is the wedge being
+    /// contained, not a leak.
+    ///
     /// - Parameter work: The blocking closure to execute off the pool.
     /// - Returns: The value produced by `work`.
     static func offCooperativePool<T: Sendable>(_ work: @Sendable @escaping () -> T) async -> T {
-        await withCheckedContinuation { continuation in
+        await gate.acquire()
+        let result = await withCheckedContinuation { continuation in
             workQueue.async {
                 continuation.resume(returning: work())
             }
         }
+        await gate.release()
+        return result
     }
 
     /// Runs `git <arguments>` to completion and returns its standard output.
@@ -143,5 +170,40 @@ enum GitCommandRunner {
             throw Failure.nonZeroExit(process.terminationStatus)
         }
         return String(data: outData, encoding: .utf8) ?? ""
+    }
+}
+
+/// A bounded async semaphore: an `actor`-isolated counting permit used to cap
+/// how many blocking git load routines occupy a worker thread concurrently.
+///
+/// `acquire()` suspends (never blocks a thread) when no permit is free, so
+/// excess callers wait off-thread in FIFO order. Promotes a `DispatchSemaphore`
+/// to actor isolation per the codebase's Swift-6 concurrency rules.
+private actor ConcurrencyGate {
+    private var available: Int
+    private var waiters: [CheckedContinuation<Void, Never>] = []
+
+    /// - Parameter limit: The maximum number of permits held simultaneously.
+    init(limit: Int) {
+        available = limit
+    }
+
+    /// Takes a permit, suspending until one is free. Pair every successful
+    /// `acquire()` with exactly one ``release()``.
+    func acquire() async {
+        if available > 0 {
+            available -= 1
+            return
+        }
+        await withCheckedContinuation { waiters.append($0) }
+    }
+
+    /// Returns a permit, resuming the longest-waiting caller if any.
+    func release() {
+        if waiters.isEmpty {
+            available += 1
+        } else {
+            waiters.removeFirst().resume()
+        }
     }
 }
